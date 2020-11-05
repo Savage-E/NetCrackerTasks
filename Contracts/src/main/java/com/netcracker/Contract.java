@@ -4,48 +4,48 @@ import org.jetbrains.annotations.NotNull;
 import org.joda.time.LocalDate;
 
 public class Contract {
-    protected int id;
-    protected @NotNull LocalDate startDate;
-    protected @NotNull LocalDate endDate;
-    protected @NotNull Client client;
+    private int id;
+    private @NotNull LocalDate startDate;
+    private @NotNull LocalDate endDate;
+    private @NotNull Client client;
 
 
-    protected Contract(int id,@NotNull LocalDate startDate, @NotNull LocalDate endDate,@NotNull Client client) {
+    protected Contract(int id, @NotNull LocalDate startDate, @NotNull LocalDate endDate, @NotNull Client client) {
         this.id = id;
         this.startDate = startDate;
         this.endDate = endDate;
         this.client = client;
     }
 
-    protected int getId() {
+    public int getId() {
         return id;
     }
 
-    protected void setId(int id) {
+    public void setId(int id) {
         this.id = id;
     }
 
-    protected LocalDate getStartDate() {
+    public LocalDate getStartDate() {
         return startDate;
     }
 
-    protected void setStartDate(@NotNull LocalDate startDate) {
+    public void setStartDate(LocalDate startDate) {
         this.startDate = startDate;
     }
 
-    protected LocalDate getEndDate() {
+    public LocalDate getEndDate() {
         return endDate;
     }
 
-    protected void setEndDate(@NotNull LocalDate endDate) {
+    public void setEndDate(LocalDate endDate) {
         this.endDate = endDate;
     }
 
-    protected Client getClient() {
+    public Client getClient() {
         return client;
     }
 
-    protected void setClient(@NotNull Client client) {
+    public void setClient(Client client) {
         this.client = client;
     }
 }

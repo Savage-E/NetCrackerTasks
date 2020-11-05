@@ -58,7 +58,8 @@ public final class Client {
     public void setPassport_num_series(int passport_num_series) {
         this.passport_num_series = passport_num_series;
     }
-    public int getAge(){
-        return Years.yearsBetween(birthday,LocalDate.now()).getYears();
+
+    public int getAge() {
+        return Years.yearsBetween(birthday, LocalDate.now()).getYears();
     }
 }

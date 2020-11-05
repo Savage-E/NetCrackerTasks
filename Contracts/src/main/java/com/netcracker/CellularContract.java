@@ -8,6 +8,13 @@ public final class CellularContract extends Contract {
     private int mb;
     private int minutes;
 
+    public CellularContract(int id, @NotNull LocalDate startDate, @NotNull LocalDate endDate, @NotNull Client client, int sms, int mb, int minutes) {
+        super(id, startDate, endDate, client);
+        this.sms = sms;
+        this.mb = mb;
+        this.minutes = minutes;
+    }
+
     public int getSms() {
         return sms;
     }
@@ -29,13 +36,6 @@ public final class CellularContract extends Contract {
     }
 
     public void setMinutes(int minutes) {
-        this.minutes = minutes;
-    }
-
-    public CellularContract(int id, @NotNull LocalDate startDate, @NotNull LocalDate endDate, @NotNull Client client, int sms, int mb, int minutes) {
-        super(id, startDate, endDate, client);
-        this.sms = sms;
-        this.mb = mb;
         this.minutes = minutes;
     }
 }
