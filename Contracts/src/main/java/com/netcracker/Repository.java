@@ -1,14 +1,14 @@
 package com.netcracker;
 
 public class Repository implements IRepository {
-    private DynamicArray<Contract> repo;
+    private final DynamicArray<Contract> repo;
 
     public Repository() {
         this.repo = new DynamicArray<Contract>();
     }
 
     public boolean set(int id, Contract contract) {
-        Contract temp = null;
+        Contract temp;
         for (int i = 0; i < repo.size(); i++) {
             temp = repo.get(i);
             if (temp.getId() == id) {
@@ -22,7 +22,7 @@ public class Repository implements IRepository {
     }
 
     public Contract get(int id) {
-        Contract temp = null;
+        Contract temp;
         for (int i = 0; i < repo.size(); i++) {
             temp = repo.get(i);
             if (temp.getId() == id)

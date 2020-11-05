@@ -11,11 +11,11 @@ public class DigitalTVContract extends Contract {
         this.channelPack = channelPack;
     }
 
-    public String getChannelPack() {
+    public @NotNull String getChannelPack() {
         return channelPack;
     }
 
-    public void setChannelPack(String channelPack) {
+    public void setChannelPack(@NotNull String channelPack) {
         this.channelPack = channelPack;
     }
 }

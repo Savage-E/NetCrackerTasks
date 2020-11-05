@@ -25,27 +25,27 @@ public class Contract {
         this.id = id;
     }
 
-    public LocalDate getStartDate() {
+    public @NotNull LocalDate getStartDate() {
         return startDate;
     }
 
-    public void setStartDate(LocalDate startDate) {
+    public void setStartDate(@NotNull LocalDate startDate) {
         this.startDate = startDate;
     }
 
-    public LocalDate getEndDate() {
+    public @NotNull LocalDate getEndDate() {
         return endDate;
     }
 
-    public void setEndDate(LocalDate endDate) {
+    public void setEndDate(@NotNull LocalDate endDate) {
         this.endDate = endDate;
     }
 
-    public Client getClient() {
+    public @NotNull Client getClient() {
         return client;
     }
 
-    public void setClient(Client client) {
+    public void setClient(@NotNull Client client) {
         this.client = client;
     }
 }

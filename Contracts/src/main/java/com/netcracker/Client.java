@@ -27,11 +27,11 @@ public final class Client {
         this.id = id;
     }
 
-    public String getFio() {
+    public @NotNull String getFio() {
         return fio;
     }
 
-    public void setFio(String fio) {
+    public void setFio(@NotNull String fio) {
         this.fio = fio;
     }
 
@@ -43,11 +43,11 @@ public final class Client {
         this.birthday = birthday;
     }
 
-    public String getGender() {
+    public @NotNull String getGender() {
         return gender;
     }
 
-    public void setGender(String gender) {
+    public void setGender(@NotNull String gender) {
         this.gender = gender;
     }
 

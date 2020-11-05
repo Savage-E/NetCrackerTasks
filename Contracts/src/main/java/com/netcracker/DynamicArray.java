@@ -2,7 +2,6 @@ package com.netcracker;
 
 import org.jetbrains.annotations.NotNull;
 
-import java.util.ArrayList;
 import java.util.Iterator;
 
 public final class DynamicArray<T> implements Iterable<T> {
@@ -14,9 +13,6 @@ public final class DynamicArray<T> implements Iterable<T> {
 
     public DynamicArray() {
         this.array = (T[]) new Object[DEFAULT_CAPACITY];
-
-        ArrayList arrayList = new ArrayList();
-
 
         this.size = 0;
     }
@@ -33,13 +29,9 @@ public final class DynamicArray<T> implements Iterable<T> {
         array[index] = newValue;
     }
 
-    public T remove(int index) {
-        T removeItem = array[index];
-        for (int i = index; i < size() - 1; i++) {
-            array[i] = array[i + 1];
-        }
+    public void remove(int index) {
+        if (size() - 1 - index >= 0) System.arraycopy(array, index + 1, array, index, size() - 1 - index);
         size--;
-        return removeItem;
     }
 
     @NotNull
@@ -89,9 +81,7 @@ public final class DynamicArray<T> implements Iterable<T> {
         T[] temp = array;
         array = (T[]) new Object[newSize];
 
-        for (int i = 0; i < size(); i++) {
-            array[i] = temp[i];
-        }
+        if (size() >= 0) System.arraycopy(temp, 0, array, 0, size());
     }
 
     private class ArrayListIterator implements java.util.Iterator<T> {
