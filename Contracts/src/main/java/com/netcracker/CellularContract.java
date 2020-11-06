@@ -3,11 +3,30 @@ package com.netcracker;
 import org.jetbrains.annotations.NotNull;
 import org.joda.time.LocalDate;
 
+
+/**
+ * Represents the entity of cellular contracts.
+ * <p>
+ * Please see the {@link com.netcracker.Contract} class for true identity
+ *
+ * @author Vlad Kotov
+ */
 public final class CellularContract extends Contract {
     private int sms;
     private int mb;
     private int minutes;
 
+    /**
+     * Creates a cellular contract.
+     *
+     * @param id        the contract id
+     * @param startDate the date of the beginning of the contract
+     * @param endDate   the end date of the contract
+     * @param client    the client entity
+     * @param sms       the number of sms in the contract
+     * @param mb        the number of megabyte in the contract
+     * @param minutes   the number of minutes in the contract
+     */
     public CellularContract(int id, @NotNull LocalDate startDate, @NotNull LocalDate endDate, @NotNull Client client, int sms, int mb, int minutes) {
         super(id, startDate, endDate, client);
         this.sms = sms;

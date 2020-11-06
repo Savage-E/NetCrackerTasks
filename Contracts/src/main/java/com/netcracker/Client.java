@@ -4,6 +4,11 @@ import org.jetbrains.annotations.NotNull;
 import org.joda.time.LocalDate;
 import org.joda.time.Years;
 
+/**
+ * Represents client entity.
+ *
+ * @author Vlad Kotov
+ */
 public final class Client {
     private int id;
     private @NotNull String fio;
@@ -11,6 +16,15 @@ public final class Client {
     private @NotNull String gender;
     private int passport_num_series;
 
+    /**
+     * Creates a client.
+     *
+     * @param id                  the client id
+     * @param fio                 client's full name
+     * @param birthday            client's birthday
+     * @param gender              client's gender
+     * @param passport_num_series the client's ID(passport data)
+     */
     public Client(int id, @NotNull String fio, LocalDate birthday, @NotNull String gender, int passport_num_series) {
         this.id = id;
         this.fio = fio;
