@@ -62,9 +62,12 @@ public final class DynamicArray<T> implements Iterable<T> {
      * @return true if this array contained the specified element
      */
     public boolean remove(int index) {
-        if (size() - 1 - index >= 0) System.arraycopy(array, index + 1, array, index, size() - 1 - index);
+        if (size() - 1 - index >= 0) {System.arraycopy(array, index + 1, array, index, size() - 1 - index);
         size--;
-        return true;
+        return true;}
+        else{
+            return false;
+        }
     }
 
     /**

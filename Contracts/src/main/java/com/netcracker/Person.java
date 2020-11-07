@@ -5,11 +5,11 @@ import org.joda.time.LocalDate;
 import org.joda.time.Years;
 
 /**
- * Represents client entity.
+ * Represents person entity.
  *
  * @author Vlad Kotov
  */
-public final class Client {
+public final class Person {
     private int id;
     private @NotNull String fio;
     private LocalDate birthday;
@@ -17,15 +17,15 @@ public final class Client {
     private int passport_num_series;
 
     /**
-     * Creates a client.
+     * Creates a person.
      *
-     * @param id                  the client id
-     * @param fio                 client's full name
-     * @param birthday            client's birthday
-     * @param gender              client's gender
-     * @param passport_num_series the client's ID(passport data)
+     * @param id                  the person id
+     * @param fio                 person's full name
+     * @param birthday            person's birthday
+     * @param gender              person's gender
+     * @param passport_num_series the person's ID(passport data)
      */
-    public Client(int id, @NotNull String fio, LocalDate birthday, @NotNull String gender, int passport_num_series) {
+    public Person(int id, @NotNull String fio, LocalDate birthday, @NotNull String gender, int passport_num_series) {
         this.id = id;
         this.fio = fio;
         this.birthday = birthday;

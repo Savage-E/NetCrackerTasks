@@ -22,13 +22,13 @@ public final class CellularContract extends Contract {
      * @param id        the contract id
      * @param startDate the date of the beginning of the contract
      * @param endDate   the end date of the contract
-     * @param client    the client entity
+     * @param person    the person entity
      * @param sms       the number of sms in the contract
      * @param mb        the number of megabyte in the contract
      * @param minutes   the number of minutes in the contract
      */
-    public CellularContract(int id, @NotNull LocalDate startDate, @NotNull LocalDate endDate, @NotNull Client client, int sms, int mb, int minutes) {
-        super(id, startDate, endDate, client);
+    public CellularContract(int id, @NotNull LocalDate startDate, @NotNull LocalDate endDate, @NotNull Person person, int sms, int mb, int minutes) {
+        super(id, startDate, endDate, person);
         this.sms = sms;
         this.mb = mb;
         this.minutes = minutes;

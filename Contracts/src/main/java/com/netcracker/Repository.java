@@ -20,21 +20,22 @@ public class Repository implements IRepository {
     /**
      * Replaces the contract at the specified position in this repository with the specified contract.
      *
-     * @param id the id of the contract to replace
+     * @param id       the id of the contract to replace
      * @param contract - new contract to be stored at the specified position
      * @return the contract at the specified position
      */
     public Contract set(int id, Contract contract) {
-        Contract temp = null;
+        Contract temp;
         for (int i = 0; i < repo.size(); i++) {
             temp = repo.get(i);
             if (temp.getId() == id) {
+
                 repo.set(i, contract);
                 return temp;
             }
         }
-        return temp;
-
+        System.out.println("Contract with id " + id + " not found");
+        return null;
     }
 
     /**
@@ -81,9 +82,4 @@ public class Repository implements IRepository {
         return repo.add(contract);
     }
 
-    public void printAll() {
-        for (Contract c : repo) {
-            System.out.println(c.getId());
-        }
-    }
 }

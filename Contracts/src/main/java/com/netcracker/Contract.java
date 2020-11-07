@@ -12,7 +12,7 @@ public class Contract {
     private int id;
     private @NotNull LocalDate startDate;
     private @NotNull LocalDate endDate;
-    private @NotNull Client client;
+    private @NotNull Person person;
 
 
     /**
@@ -21,13 +21,13 @@ public class Contract {
      * @param id        the contract id
      * @param startDate the date of the beginning of the contract
      * @param endDate   the end date of the contract
-     * @param client    client entity
+     * @param person    person entity
      */
-    protected Contract(int id, @NotNull LocalDate startDate, @NotNull LocalDate endDate, @NotNull Client client) {
+    protected Contract(int id, @NotNull LocalDate startDate, @NotNull LocalDate endDate, @NotNull Person person) {
         this.id = id;
         this.startDate = startDate;
         this.endDate = endDate;
-        this.client = client;
+        this.person = person;
     }
 
     public int getId() {
@@ -54,11 +54,11 @@ public class Contract {
         this.endDate = endDate;
     }
 
-    public @NotNull Client getClient() {
-        return client;
+    public @NotNull Person getPerson() {
+        return person;
     }
 
-    public void setClient(@NotNull Client client) {
-        this.client = client;
+    public void setPerson(@NotNull Person person) {
+        this.person = person;
     }
 }
