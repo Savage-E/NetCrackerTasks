@@ -16,14 +16,15 @@ public final class InternetContract extends Contract {
     /**
      * Creates an Internet Contract.
      *
-     * @param id        the  contract id
-     * @param startDate the date of the beginning of the contract
-     * @param endDate   the end date of the contract
-     * @param person    the person entity
-     * @param maxSpeed  the max speed of the internet in the contract
+     * @param id             the  contract id
+     * @param startDate      the date of the beginning of the contract
+     * @param endDate        the end date of the contract
+     * @param contractNumber the  number of the contract
+     * @param person         the person entity
+     * @param maxSpeed       the max speed of the internet in the contract
      */
-    public InternetContract(int id, @NotNull LocalDate startDate, @NotNull LocalDate endDate, @NotNull Person person, int maxSpeed) {
-        super(id, startDate, endDate, person);
+    public InternetContract(int id, @NotNull LocalDate startDate, @NotNull LocalDate endDate, int contractNumber, @NotNull Person person, int maxSpeed) {
+        super(id, startDate, endDate,contractNumber , person);
         this.maxSpeed = maxSpeed;
     }
 

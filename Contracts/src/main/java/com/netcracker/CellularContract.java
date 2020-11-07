@@ -19,16 +19,17 @@ public final class CellularContract extends Contract {
     /**
      * Creates a cellular contract.
      *
-     * @param id        the contract id
-     * @param startDate the date of the beginning of the contract
-     * @param endDate   the end date of the contract
-     * @param person    the person entity
-     * @param sms       the number of sms in the contract
-     * @param mb        the number of megabyte in the contract
-     * @param minutes   the number of minutes in the contract
+     * @param id             the contract id
+     * @param startDate      the date of the beginning of the contract
+     * @param endDate        the end date of the contract
+     * @param contractNumber the number of the contract
+     * @param person         the person entity
+     * @param sms            the number of sms in the contract
+     * @param mb             the number of megabyte in the contract
+     * @param minutes        the number of minutes in the contract
      */
-    public CellularContract(int id, @NotNull LocalDate startDate, @NotNull LocalDate endDate, @NotNull Person person, int sms, int mb, int minutes) {
-        super(id, startDate, endDate, person);
+    public CellularContract(int id, @NotNull LocalDate startDate, @NotNull LocalDate endDate, int contractNumber, @NotNull Person person, int sms, int mb, int minutes) {
+        super(id, startDate, endDate, contractNumber, person);
         this.sms = sms;
         this.mb = mb;
         this.minutes = minutes;

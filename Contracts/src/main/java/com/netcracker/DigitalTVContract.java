@@ -16,14 +16,15 @@ public class DigitalTVContract extends Contract {
     /**
      * Creates a Digital TV Contract.
      *
-     * @param id          the contract id
-     * @param startDate   the date of the beginning of the contract
-     * @param endDate     the end date of the contract
-     * @param person      person entity
-     * @param channelPack available channels in the contract
+     * @param id             the contract id
+     * @param startDate      the date of the beginning of the contract
+     * @param endDate        the end date of the contract
+     * @param contractNumber the number of the contract
+     * @param person         person entity
+     * @param channelPack    available channels in the contract
      */
-    public DigitalTVContract(int id, @NotNull LocalDate startDate, @NotNull LocalDate endDate, @NotNull Person person, @NotNull String channelPack) {
-        super(id, startDate, endDate, person);
+    public DigitalTVContract(int id, @NotNull LocalDate startDate, @NotNull LocalDate endDate, int contractNumber, @NotNull Person person, @NotNull String channelPack) {
+        super(id, startDate, endDate, contractNumber, person);
         this.channelPack = channelPack;
     }
 
