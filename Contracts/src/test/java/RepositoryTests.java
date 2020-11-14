@@ -1,10 +1,14 @@
-import com.netcracker.*;
+import com.netcracker.Person;
+import com.netcracker.Repository;
 import com.netcracker.contracts.CellularContract;
 import com.netcracker.contracts.Contract;
 import com.netcracker.contracts.DigitalTVContract;
 import org.joda.time.LocalDate;
 import org.joda.time.chrono.CopticChronology;
 import org.junit.Test;
+
+import java.util.ArrayList;
+import java.util.Comparator;
 
 import static org.junit.Assert.*;
 
@@ -36,7 +40,7 @@ public class RepositoryTests {
         repo.add(new CellularContract(8, new LocalDate(2010, 12, 12, CopticChronology.getInstance()), new LocalDate(2010, 12, 21, CopticChronology.getInstance()), 243, new Person(1, "fewe", new LocalDate(1999, 10, 23, CopticChronology.getInstance()), "male", 21312311), 423, 3432, 123412));
 
         Contract contract = repo.set(3, new CellularContract(3, new LocalDate(2010, 12, 12, CopticChronology.getInstance()), new LocalDate(2010, 12, 21, CopticChronology.getInstance()), 44, new Person(1, "fewe", new LocalDate(1999, 10, 23, CopticChronology.getInstance()), "male", 21312311), 423, 3432, 123412));
-        assertEquals(null, contract);
+        assertNull(contract);
     }
 
 
@@ -96,7 +100,7 @@ public class RepositoryTests {
         repo.add(new CellularContract(2, new LocalDate(2010, 12, 12, CopticChronology.getInstance()), new LocalDate(2010, 12, 21, CopticChronology.getInstance()), 4323, new Person(1, "fewe342", new LocalDate(1999, 10, 23, CopticChronology.getInstance()), "male", 21312311), 423, 3432, 123412));
         repo.add(new DigitalTVContract(4, new LocalDate(2010, 12, 12, CopticChronology.getInstance()), new LocalDate(2010, 12, 21, CopticChronology.getInstance()), 234, new Person(4, "Vlad Kotov", new LocalDate(1999, 10, 23, CopticChronology.getInstance()), "male", 21312311), "CNN,1,"));
         Contract actual = repo.get(3);
-        assertEquals(null, actual);
+        assertNull(actual);
     }
 
     @Test
@@ -107,7 +111,7 @@ public class RepositoryTests {
         repo.add(new CellularContract(2, new LocalDate(2010, 12, 12, CopticChronology.getInstance()), new LocalDate(2010, 12, 21, CopticChronology.getInstance()), 4323, new Person(1, "fewe342", new LocalDate(1999, 10, 23, CopticChronology.getInstance()), "male", 21312311), 423, 3432, 123412));
         repo.add(new DigitalTVContract(4, new LocalDate(2010, 12, 12, CopticChronology.getInstance()), new LocalDate(2010, 12, 21, CopticChronology.getInstance()), 234, new Person(4, "Vlad Kotov", new LocalDate(1999, 10, 23, CopticChronology.getInstance()), "male", 21312311), "CNN,1,"));
 
-        Repository repo1 = (Repository) repo.searchBy(u -> u.getPerson().getGender() == "male");
+        Repository repo1 = (Repository) repo.searchBy(u -> u.getPerson().getGender().equals("male"));
         assertNull(repo1.get(3));
     }
 
@@ -119,7 +123,7 @@ public class RepositoryTests {
         repo.add(new CellularContract(2, new LocalDate(2010, 12, 12, CopticChronology.getInstance()), new LocalDate(2010, 12, 21, CopticChronology.getInstance()), 4323, new Person(1, "fewe342", new LocalDate(1999, 10, 23, CopticChronology.getInstance()), "male", 21312311), 423, 3432, 123412));
         repo.add(new DigitalTVContract(4, new LocalDate(2010, 12, 12, CopticChronology.getInstance()), new LocalDate(2010, 12, 21, CopticChronology.getInstance()), 234, new Person(4, "Vlad Kotov", new LocalDate(1999, 10, 23, CopticChronology.getInstance()), "male", 21312311), "CNN,1,"));
 
-        Repository repo1 = (Repository) repo.searchBy(u -> u.getPerson().getGender() == "male");
+        Repository repo1 = (Repository) repo.searchBy(u -> u.getPerson().getGender().equals("male"));
         String actual1 = repo1.get(1).getPerson().getGender();
         String actual2 = repo1.get(31).getPerson().getGender();
         String actual3 = repo1.get(2).getPerson().getGender();
@@ -141,7 +145,7 @@ public class RepositoryTests {
         repo.add(new CellularContract(2, new LocalDate(2010, 12, 12, CopticChronology.getInstance()), new LocalDate(2010, 12, 21, CopticChronology.getInstance()), 4323, new Person(1, "fewe342", new LocalDate(1999, 10, 23, CopticChronology.getInstance()), "male", 21312311), 423, 3432, 123412));
         repo.add(new DigitalTVContract(4, new LocalDate(2010, 12, 12, CopticChronology.getInstance()), new LocalDate(2010, 12, 21, CopticChronology.getInstance()), 234, new Person(4, "Nikita Petrov", new LocalDate(1999, 10, 23, CopticChronology.getInstance()), "male", 21312311), "CNN,1,"));
 
-        Repository repo1 = (Repository) repo.searchBy(u -> u.getPerson().getFio() == "Vlad Kotov");
+        Repository repo1 = (Repository) repo.searchBy(u -> u.getPerson().getFio().equals("Vlad Kotov"));
 
         assertNull(repo1.get(31));
         assertNull(repo1.get(1));
@@ -149,6 +153,94 @@ public class RepositoryTests {
         assertNull(repo1.get(2));
         assertNull(repo1.get(4));
     }
+
+    @Test
+    public void whenSortByFioBubbleSortThenRepositorySorted() {
+        repo.add(new DigitalTVContract(31, new LocalDate(2010, 12, 12, CopticChronology.getInstance()), new LocalDate(2010, 12, 21, CopticChronology.getInstance()), 34, new Person(1, "Fydor Potapov", new LocalDate(1999, 10, 23, CopticChronology.getInstance()), "male", 21312311), "CNN,1,"));
+        repo.add(new DigitalTVContract(1, new LocalDate(2010, 12, 12, CopticChronology.getInstance()), new LocalDate(2010, 12, 21, CopticChronology.getInstance()), 3423, new Person(3, "Andrew Betman", new LocalDate(1999, 10, 23, CopticChronology.getInstance()), "male", 21312311), "CNN,1,"));
+        repo.add(new DigitalTVContract(5, new LocalDate(2010, 12, 12, CopticChronology.getInstance()), new LocalDate(2010, 12, 21, CopticChronology.getInstance()), 2423, new Person(4, "Lolita Vorobyova", new LocalDate(1999, 10, 23, CopticChronology.getInstance()), "female", 21312311), "CNN,1,"));
+        repo.add(new CellularContract(2, new LocalDate(2010, 12, 12, CopticChronology.getInstance()), new LocalDate(2010, 12, 21, CopticChronology.getInstance()), 4323, new Person(1, "Andrew Bolton", new LocalDate(1999, 10, 23, CopticChronology.getInstance()), "male", 21312311), 423, 3432, 123412));
+        repo.add(new DigitalTVContract(4, new LocalDate(2010, 12, 12, CopticChronology.getInstance()), new LocalDate(2010, 12, 21, CopticChronology.getInstance()), 234, new Person(4, "Vlad Kotov", new LocalDate(1999, 10, 23, CopticChronology.getInstance()), "male", 21312311), "CNN,1,"));
+
+        repo.sortBy(new Comparator<Contract>() {
+            @Override
+            public int compare(Contract o1, Contract o2) {
+
+                return o1.getPerson().getFio().compareTo(o2.getPerson().getFio());
+                /*if(o1.getId()> o2.getId())
+                    return 1;
+                else if(o1.getId()< o2.getId())
+                    return -1;
+                else
+                    return 0;*/
+
+            }
+        }, 1);
+
+        ArrayList<Contract> list = repo.toArrayList();
+        ArrayList<String> expected = new ArrayList<>();
+        expected.add("Andrew Betman");
+        expected.add("Andrew Bolton");
+        expected.add("Fydor Potapov");
+        expected.add("Lolita Vorobyova");
+        expected.add("Vlad Kotov");
+
+        ArrayList<String> actual = new ArrayList<>();
+        actual.add(list.get(0).getPerson().getFio());
+        actual.add(list.get(1).getPerson().getFio());
+        actual.add(list.get(2).getPerson().getFio());
+        actual.add(list.get(3).getPerson().getFio());
+        actual.add(list.get(4).getPerson().getFio());
+
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    public void whenInvokeToArrayListThenRepositoryConverted() {
+        repo.add(new DigitalTVContract(31, new LocalDate(2010, 12, 12, CopticChronology.getInstance()), new LocalDate(2010, 12, 21, CopticChronology.getInstance()), 34, new Person(1, "Fydor Potapov", new LocalDate(1999, 10, 23, CopticChronology.getInstance()), "male", 21312311), "CNN,1,"));
+        repo.add(new DigitalTVContract(1, new LocalDate(2010, 12, 12, CopticChronology.getInstance()), new LocalDate(2010, 12, 21, CopticChronology.getInstance()), 3423, new Person(3, "Andrew Betman", new LocalDate(1999, 10, 23, CopticChronology.getInstance()), "male", 21312311), "CNN,1,"));
+        repo.add(new DigitalTVContract(5, new LocalDate(2010, 12, 12, CopticChronology.getInstance()), new LocalDate(2010, 12, 21, CopticChronology.getInstance()), 2423, new Person(4, "Lolita Vorobyova", new LocalDate(1999, 10, 23, CopticChronology.getInstance()), "female", 21312311), "CNN,1,"));
+        ArrayList<Contract> expected = new ArrayList<>();
+        expected.add(new DigitalTVContract(31, new LocalDate(2010, 12, 12, CopticChronology.getInstance()), new LocalDate(2010, 12, 21, CopticChronology.getInstance()), 34, new Person(1, "Fydor Potapov", new LocalDate(1999, 10, 23, CopticChronology.getInstance()), "male", 21312311), "CNN,1,"));
+        expected.add(new DigitalTVContract(1, new LocalDate(2010, 12, 12, CopticChronology.getInstance()), new LocalDate(2010, 12, 21, CopticChronology.getInstance()), 3423, new Person(3, "Andrew Betman", new LocalDate(1999, 10, 23, CopticChronology.getInstance()), "male", 21312311), "CNN,1,"));
+        expected.add(new DigitalTVContract(5, new LocalDate(2010, 12, 12, CopticChronology.getInstance()), new LocalDate(2010, 12, 21, CopticChronology.getInstance()), 2423, new Person(4, "Lolita Vorobyova", new LocalDate(1999, 10, 23, CopticChronology.getInstance()), "female", 21312311), "CNN,1,"));
+
+        ArrayList<Contract> actual = repo.toArrayList();
+
+        assertEquals(expected.get(0).getContractNumber(), actual.get(0).getContractNumber());
+        assertEquals(expected.get(1).getContractNumber(), actual.get(1).getContractNumber());
+        assertEquals(expected.get(2).getContractNumber(), actual.get(2).getContractNumber());
+
+    }
+
+    @Test
+    public void whenSortByFioMergeSortThenRepositorySorted() {
+        repo.add(new DigitalTVContract(31, new LocalDate(2010, 12, 12, CopticChronology.getInstance()), new LocalDate(2010, 12, 21, CopticChronology.getInstance()), 34, new Person(1, "Fydor Potapov", new LocalDate(1999, 10, 23, CopticChronology.getInstance()), "male", 21312311), "CNN,1,"));
+        repo.add(new DigitalTVContract(1, new LocalDate(2010, 12, 12, CopticChronology.getInstance()), new LocalDate(2010, 12, 21, CopticChronology.getInstance()), 3423, new Person(3, "Andrew Betman", new LocalDate(1999, 10, 23, CopticChronology.getInstance()), "male", 21312311), "CNN,1,"));
+        repo.add(new DigitalTVContract(5, new LocalDate(2010, 12, 12, CopticChronology.getInstance()), new LocalDate(2010, 12, 21, CopticChronology.getInstance()), 2423, new Person(4, "Lolita Vorobyova", new LocalDate(1999, 10, 23, CopticChronology.getInstance()), "female", 21312311), "CNN,1,"));
+        repo.add(new CellularContract(2, new LocalDate(2010, 12, 12, CopticChronology.getInstance()), new LocalDate(2010, 12, 21, CopticChronology.getInstance()), 4323, new Person(1, "Andrew Bolton", new LocalDate(1999, 10, 23, CopticChronology.getInstance()), "male", 21312311), 423, 3432, 123412));
+        repo.add(new DigitalTVContract(4, new LocalDate(2010, 12, 12, CopticChronology.getInstance()), new LocalDate(2010, 12, 21, CopticChronology.getInstance()), 234, new Person(4, "Vlad Kotov", new LocalDate(1999, 10, 23, CopticChronology.getInstance()), "male", 21312311), "CNN,1,"));
+
+        repo.sortBy((o1, o2) -> o1.getPerson().getFio().compareTo(o2.getPerson().getFio()), 2);
+
+        ArrayList<Contract> list = repo.toArrayList();
+        ArrayList<String> expected = new ArrayList<>();
+        expected.add("Andrew Betman");
+        expected.add("Andrew Bolton");
+        expected.add("Fydor Potapov");
+        expected.add("Lolita Vorobyova");
+        expected.add("Vlad Kotov");
+
+        ArrayList<String> actual = new ArrayList<>();
+        actual.add(list.get(0).getPerson().getFio());
+        actual.add(list.get(1).getPerson().getFio());
+        actual.add(list.get(2).getPerson().getFio());
+        actual.add(list.get(3).getPerson().getFio());
+        actual.add(list.get(4).getPerson().getFio());
+
+        assertEquals(expected, actual);
+    }
+
 
 }
 

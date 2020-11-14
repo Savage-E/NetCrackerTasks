@@ -5,6 +5,7 @@ import com.netcracker.contracts.Contract;
 import com.netcracker.sorters.BubbleSorter;
 import com.netcracker.sorters.MergeSorter;
 
+import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.function.Predicate;
 
@@ -22,7 +23,7 @@ public class Repository implements IRepository<Contract> {
      * Initializes repository.
      */
     public Repository() {
-        this.repo = new DynamicArray<Contract>();
+        this.repo = new DynamicArray<>();
     }
 
     /**
@@ -42,6 +43,20 @@ public class Repository implements IRepository<Contract> {
         if (option == 2) {
             new MergeSorter().sort(repo, comparator);
         }
+    }
+
+    /**
+     * Converts repository to arrayList.
+     *
+     * @return the arraylist
+     */
+    @Override
+    public ArrayList<Contract> toArrayList() {
+        ArrayList<Contract> list = new ArrayList<>();
+        for (Contract c : repo) {
+            list.add(c);
+        }
+        return list;
     }
 
     /**

@@ -1,4 +1,5 @@
-import com.netcracker.*;
+import com.netcracker.DynamicArray;
+import com.netcracker.Person;
 import com.netcracker.contracts.CellularContract;
 import com.netcracker.contracts.Contract;
 import com.netcracker.contracts.DigitalTVContract;
@@ -10,7 +11,7 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
 public class DynamicArrayTests {
-    DynamicArray<Contract> contracts = new DynamicArray<Contract>();
+    DynamicArray<Contract> contracts = new DynamicArray<>();
 
 
     @Test

@@ -1,6 +1,7 @@
 package com.netcracker;
 
 
+import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.function.Predicate;
 
@@ -51,14 +52,20 @@ public interface IRepository<T> {
      */
     IRepository<T> searchBy(Predicate<T> condition);
 
+    /**
+     * Converts repository to arrayList.
+     *
+     * @return the arraylist
+     */
+    ArrayList<T> toArrayList();
 
     /**
      * Sorts repository with specified comparator.
      *
      * @param comparator the comparator to use to sort
-     * @param option the variant of the sort method(1-BubbleSort,2-MergeSort)
+     * @param option     the variant of the sort method(1-BubbleSort,2-MergeSort)
      */
-    void sortBy(Comparator<T> comparator,int option);
+    void sortBy(Comparator<T> comparator, int option);
 
 }
 

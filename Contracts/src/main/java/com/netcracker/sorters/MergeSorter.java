@@ -2,7 +2,6 @@ package com.netcracker.sorters;
 
 import com.netcracker.DynamicArray;
 import com.netcracker.contracts.Contract;
-import com.netcracker.sorters.ISorter;
 
 import java.util.Comparator;
 
@@ -17,7 +16,7 @@ public class MergeSorter implements ISorter<DynamicArray<Contract>, Contract> {
     /**
      * Sorts source array with specified comparator.
      *
-     * @param array the source array to sort
+     * @param array      the source array to sort
      * @param comparator the comparator that we use to sort
      */
     @Override
