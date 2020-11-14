@@ -1,5 +1,6 @@
-package com.netcracker;
+package com.netcracker.contracts;
 
+import com.netcracker.Person;
 import org.jetbrains.annotations.NotNull;
 import org.joda.time.LocalDate;
 
@@ -7,7 +8,7 @@ import org.joda.time.LocalDate;
 /**
  * Represents the entity of cellular contracts.
  * <p>
- * Please see the {@link com.netcracker.Contract} class for true identity
+ * Please see the {@link Contract} class for true identity
  *
  * @author Vlad Kotov
  */

@@ -1,6 +1,10 @@
 package com.netcracker;
 
 
+import com.netcracker.contracts.Contract;
+import com.netcracker.sorters.BubbleSorter;
+import com.netcracker.sorters.MergeSorter;
+
 import java.util.Comparator;
 import java.util.function.Predicate;
 
@@ -25,21 +29,18 @@ public class Repository implements IRepository<Contract> {
      * Sorts repository with specified comparator.
      *
      * @param comparator the comparator to use to sort
+     * @param option     the variant of the sort method(1-BubbleSort,2-MergeSort)
      */
     @Override
-    public void sortBy(Comparator<Contract> comparator) {
+    public void sortBy(Comparator<Contract> comparator, int option) {
+
+        if (option == 1) {
+            new BubbleSorter().sort(repo, comparator);
 
 
-        for (Contract c :
-                repo) {
-            System.out.println(c.getPerson().getFio());
         }
-        System.out.println("After sorting");
-
-        new MergeSorter().sort(repo, comparator);
-        for (Contract c :
-                repo) {
-            System.out.println(c.getPerson().getFio());
+        if (option == 2) {
+            new MergeSorter().sort(repo, comparator);
         }
     }
 

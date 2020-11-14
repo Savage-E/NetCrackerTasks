@@ -1,4 +1,7 @@
 import com.netcracker.*;
+import com.netcracker.contracts.CellularContract;
+import com.netcracker.contracts.Contract;
+import com.netcracker.contracts.DigitalTVContract;
 import org.joda.time.LocalDate;
 import org.joda.time.chrono.CopticChronology;
 import org.junit.Test;

@@ -1,12 +1,14 @@
-package com.netcracker;
+package com.netcracker.contracts;
 
+import com.netcracker.Person;
+import com.netcracker.contracts.Contract;
 import org.jetbrains.annotations.NotNull;
 import org.joda.time.LocalDate;
 
 /**
  * Represents the Digital TV contract.
  * <p>
- * Please see the {@link com.netcracker.Contract} class for true identity
+ * Please see the {@link Contract} class for true identity
  *
  * @author Vlad Kotov
  */

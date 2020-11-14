@@ -1,11 +1,15 @@
-package com.netcracker;
+package com.netcracker.sorters;
+
+import com.netcracker.DynamicArray;
+import com.netcracker.contracts.Contract;
+import com.netcracker.sorters.ISorter;
 
 import java.util.Comparator;
 
 /**
  * Merge Sorter.
  * <p>
- * Please see the {@link com.netcracker.ISorter} interface for true identity
+ * Please see the {@link ISorter} interface for true identity
  *
  * @author Vlad Kotov
  */

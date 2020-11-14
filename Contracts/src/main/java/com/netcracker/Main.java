@@ -1,5 +1,8 @@
 package com.netcracker;
 
+import com.netcracker.contracts.CellularContract;
+import com.netcracker.contracts.Contract;
+import com.netcracker.contracts.DigitalTVContract;
 import org.joda.time.LocalDate;
 import org.joda.time.chrono.CopticChronology;
 
@@ -18,20 +21,20 @@ public class Main {
         repository.add(new DigitalTVContract(4, new LocalDate(2010, 12, 12, CopticChronology.getInstance()), new LocalDate(2010, 12, 21, CopticChronology.getInstance()), 234, new Person(4, "Vlad Kotov", new LocalDate(1999, 10, 23, CopticChronology.getInstance()), "male", 21312311), "CNN,1,"));
 
 //        Repository repo1 = (Repository) repository.searchBy(u->u.getPerson().getGender()=="male");
-        repository.sortBy(new Comparator<Contract>() {
+      /*  repository.sortBy(new Comparator<Contract>() {
             @Override
             public int compare(Contract o1, Contract o2) {
 
                 return o1.getPerson().getFio().compareTo(o2.getPerson().getFio());
 
-                /*if(o1.getId()> o2.getId())
+                *//*if(o1.getId()> o2.getId())
                     return 1;
                 else if(o1.getId()< o2.getId())
                     return -1;
                 else
-                    return 0;*/
+                    return 0;*//*
             }
-        });
+        });*/
 
 
     }

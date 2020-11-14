@@ -56,8 +56,9 @@ public interface IRepository<T> {
      * Sorts repository with specified comparator.
      *
      * @param comparator the comparator to use to sort
+     * @param option the variant of the sort method(1-BubbleSort,2-MergeSort)
      */
-    void sortBy(Comparator<T> comparator);
+    void sortBy(Comparator<T> comparator,int option);
 
 }
 
