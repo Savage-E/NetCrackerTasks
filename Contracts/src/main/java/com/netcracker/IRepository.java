@@ -1,6 +1,7 @@
 package com.netcracker;
 
 
+import java.util.Comparator;
 import java.util.function.Predicate;
 
 /**
@@ -48,7 +49,15 @@ public interface IRepository<T> {
      * @param condition the condition to search the contracts
      * @return new repository with specific objects satisfying the condition
      */
-    public IRepository<T> searchBy(Predicate<T> condition);
+    IRepository<T> searchBy(Predicate<T> condition);
+
+
+    /**
+     * Sorts repository with specified comparator.
+     *
+     * @param comparator the comparator to use to sort
+     */
+    void sortBy(Comparator<T> comparator);
 
 }
 

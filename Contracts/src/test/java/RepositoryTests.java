@@ -145,8 +145,6 @@ public class RepositoryTests {
         assertNull(repo1.get(5));
         assertNull(repo1.get(2));
         assertNull(repo1.get(4));
-
-
     }
 
 }

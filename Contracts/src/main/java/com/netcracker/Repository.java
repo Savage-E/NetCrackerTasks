@@ -1,6 +1,7 @@
 package com.netcracker;
 
 
+import java.util.Comparator;
 import java.util.function.Predicate;
 
 /**
@@ -11,7 +12,6 @@ import java.util.function.Predicate;
  * @author Vlad Kotov
  */
 public class Repository implements IRepository<Contract> {
-
     private final DynamicArray<Contract> repo;
 
     /**
@@ -19,6 +19,28 @@ public class Repository implements IRepository<Contract> {
      */
     public Repository() {
         this.repo = new DynamicArray<Contract>();
+    }
+
+    /**
+     * Sorts repository with specified comparator.
+     *
+     * @param comparator the comparator to use to sort
+     */
+    @Override
+    public void sortBy(Comparator<Contract> comparator) {
+
+
+        for (Contract c :
+                repo) {
+            System.out.println(c.getPerson().getFio());
+        }
+        System.out.println("After sorting");
+
+        new MergeSorter().sort(repo, comparator);
+        for (Contract c :
+                repo) {
+            System.out.println(c.getPerson().getFio());
+        }
     }
 
     /**
