@@ -1,5 +1,8 @@
 package com.netcracker;
 
+
+import java.util.function.Predicate;
+
 /**
  * Represents repository for contracts.
  * <p>
@@ -7,7 +10,8 @@ package com.netcracker;
  *
  * @author Vlad Kotov
  */
-public class Repository implements IRepository {
+public class Repository implements IRepository<Contract> {
+
     private final DynamicArray<Contract> repo;
 
     /**
@@ -15,6 +19,22 @@ public class Repository implements IRepository {
      */
     public Repository() {
         this.repo = new DynamicArray<Contract>();
+    }
+
+    /**
+     * Returns new repository with specified contracts by specified condition.
+     *
+     * @param condition - the condition to search the contracts
+     * @return new repository with specific contracts satisfying the condition
+     */
+    public IRepository<Contract> searchBy(Predicate<Contract> condition) {
+        Repository repository = new Repository();
+        for (Contract c : repo) {
+            if (condition.test(c)) {
+                repository.add(c);
+            }
+        }
+        return repository;
     }
 
     /**
@@ -51,7 +71,6 @@ public class Repository implements IRepository {
             if (temp.getId() == id)
                 return temp;
         }
-        System.out.println("Contract with id " + id + " not found");
         return null;
     }
 

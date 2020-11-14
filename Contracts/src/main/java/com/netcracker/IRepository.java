@@ -1,19 +1,21 @@
 package com.netcracker;
 
 
+import java.util.function.Predicate;
+
 /**
  * Repository interface provides get, delete, add and set methods.
  *
  * @author Vlad Kotov
  */
-public interface IRepository {
+public interface IRepository<T> {
     /**
      * Returns the specified contract with specified id.
      *
-     * @param id  the id of the contract to get
+     * @param id the id of the contract to get
      * @return the specified contract entity
      */
-    Contract get(int id);
+    T get(int id);
 
     /**
      * Deletes specified contract.
@@ -29,15 +31,24 @@ public interface IRepository {
      * @param contract the contract to be appended to this repository
      * @return true if the contract was added to the repository
      */
-    boolean add(Contract contract);
+    boolean add(T contract);
 
     /**
      * Replaces the contract with the specified id in this repository with the specified contract.
      *
-     * @param id the id contract to replace
+     * @param id       the id contract to replace
      * @param contract the contract to be stored in the specified position
      * @return the contract previously at the specified position
      */
-    Contract set(int id, Contract contract);
+    T set(int id, T contract);
+
+    /**
+     * Returns new repository with specified objects by specified condition.
+     *
+     * @param condition the condition to search the contracts
+     * @return new repository with specific objects satisfying the condition
+     */
+    public IRepository<T> searchBy(Predicate<T> condition);
+
 }
 
