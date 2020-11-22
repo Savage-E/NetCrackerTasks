@@ -2,9 +2,7 @@ package com.netcracker;
 
 
 import com.netcracker.contracts.Contract;
-import com.netcracker.sorters.BubbleSorter;
 import com.netcracker.sorters.ISorter;
-import com.netcracker.sorters.MergeSorter;
 
 import java.util.ArrayList;
 import java.util.Comparator;
@@ -38,7 +36,6 @@ public class Repository implements IRepository<Contract> {
 
 
         sorter.sort(repo, comparator);
-
 
 
     }

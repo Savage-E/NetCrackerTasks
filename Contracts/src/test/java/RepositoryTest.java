@@ -15,13 +15,14 @@ import java.util.Comparator;
 
 import static org.junit.Assert.*;
 
-public class RepositoryTests {
+public class RepositoryTest {
     Repository repo = new Repository();
 
     @Before
-    public void initRepo(){
-        repo=new Repository();
+    public void initRepo() {
+        repo = new Repository();
     }
+
     @Test
     public void whenSetNewContractThenContractsUpdated() {
         repo.add(new DigitalTVContract(1, new LocalDate(2010, 12, 12, CopticChronology.getInstance()), new LocalDate(2010, 12, 21, CopticChronology.getInstance()), 33, new Person(1, "Fydor Potapov", new LocalDate(1999, 10, 23, CopticChronology.getInstance()), "male", 21312311), "CNN,1,"));
@@ -151,7 +152,6 @@ public class RepositoryTests {
         repo.add(new DigitalTVContract(5, new LocalDate(2010, 12, 12, CopticChronology.getInstance()), new LocalDate(2010, 12, 21, CopticChronology.getInstance()), 2423, new Person(4, "Lolita", new LocalDate(1999, 10, 23, CopticChronology.getInstance()), "female", 21312311), "CNN,1,"));
         repo.add(new CellularContract(2, new LocalDate(2010, 12, 12, CopticChronology.getInstance()), new LocalDate(2010, 12, 21, CopticChronology.getInstance()), 4323, new Person(1, "fewe342", new LocalDate(1999, 10, 23, CopticChronology.getInstance()), "male", 21312311), 423, 3432, 123412));
         repo.add(new DigitalTVContract(4, new LocalDate(2010, 12, 12, CopticChronology.getInstance()), new LocalDate(2010, 12, 21, CopticChronology.getInstance()), 234, new Person(4, "Nikita Petrov", new LocalDate(1999, 10, 23, CopticChronology.getInstance()), "male", 21312311), "CNN,1,"));
-
         Repository repo1 = (Repository) repo.searchBy(u -> u.getPerson().getFio().equals("Vlad Kotov"));
 
         assertNull(repo1.get(31));
@@ -169,20 +169,7 @@ public class RepositoryTests {
         repo.add(new CellularContract(2, new LocalDate(2010, 12, 12, CopticChronology.getInstance()), new LocalDate(2010, 12, 21, CopticChronology.getInstance()), 4323, new Person(1, "Andrew Bolton", new LocalDate(1999, 10, 23, CopticChronology.getInstance()), "male", 21312311), 423, 3432, 123412));
         repo.add(new DigitalTVContract(4, new LocalDate(2010, 12, 12, CopticChronology.getInstance()), new LocalDate(2010, 12, 21, CopticChronology.getInstance()), 234, new Person(4, "Vlad Kotov", new LocalDate(1999, 10, 23, CopticChronology.getInstance()), "male", 21312311), "CNN,1,"));
 
-        repo.sortBy(new Comparator<Contract>() {
-            @Override
-            public int compare(Contract o1, Contract o2) {
-
-                return o1.getPerson().getFio().compareTo(o2.getPerson().getFio());
-                /*if(o1.getId()> o2.getId())
-                    return 1;
-                else if(o1.getId()< o2.getId())
-                    return -1;
-                else
-                    return 0;*/
-
-            }
-        }, new BubbleSorter());
+        repo.sortBy(Comparator.comparing(o -> o.getPerson().getFio()), new BubbleSorter());
 
         ArrayList<Contract> list = repo.toArrayList();
         ArrayList<String> expected = new ArrayList<>();
@@ -228,7 +215,7 @@ public class RepositoryTests {
         repo.add(new CellularContract(2, new LocalDate(2010, 12, 12, CopticChronology.getInstance()), new LocalDate(2010, 12, 21, CopticChronology.getInstance()), 4323, new Person(1, "Andrew Bolton", new LocalDate(1999, 10, 23, CopticChronology.getInstance()), "male", 21312311), 423, 3432, 123412));
         repo.add(new DigitalTVContract(4, new LocalDate(2010, 12, 12, CopticChronology.getInstance()), new LocalDate(2010, 12, 21, CopticChronology.getInstance()), 234, new Person(4, "Vlad Kotov", new LocalDate(1999, 10, 23, CopticChronology.getInstance()), "male", 21312311), "CNN,1,"));
 
-        repo.sortBy((o1, o2) -> o1.getPerson().getFio().compareTo(o2.getPerson().getFio()), new MergeSorter());
+        repo.sortBy(Comparator.comparing(o -> o.getPerson().getFio()), new MergeSorter());
 
         ArrayList<Contract> list = repo.toArrayList();
         ArrayList<String> expected = new ArrayList<>();

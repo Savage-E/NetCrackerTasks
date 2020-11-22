@@ -3,7 +3,7 @@ import com.netcracker.Person;
 import com.netcracker.contracts.CellularContract;
 import com.netcracker.contracts.Contract;
 import com.netcracker.contracts.DigitalTVContract;
-import com.netcracker.sorters.MergeSorter;
+import com.netcracker.sorters.BubbleSorter;
 import org.joda.time.LocalDate;
 import org.joda.time.chrono.CopticChronology;
 import org.junit.Test;
@@ -12,7 +12,7 @@ import java.util.Comparator;
 
 import static org.junit.Assert.assertEquals;
 
-public class MergeSorterTests {
+public class BubbleSorterTest {
 
     @Test
     public void whenSortByIdThenArraySorted() {
@@ -23,15 +23,7 @@ public class MergeSorterTests {
         array.add(new CellularContract(2, new LocalDate(2010, 12, 12, CopticChronology.getInstance()), new LocalDate(2010, 12, 21, CopticChronology.getInstance()), 4323, new Person(1, "Andrew Bolton", new LocalDate(1999, 10, 23, CopticChronology.getInstance()), "male", 21312311), 423, 3432, 123412));
         array.add(new DigitalTVContract(4, new LocalDate(2010, 12, 12, CopticChronology.getInstance()), new LocalDate(2010, 12, 21, CopticChronology.getInstance()), 234, new Person(4, "Vlad Kotov", new LocalDate(1999, 10, 23, CopticChronology.getInstance()), "male", 21312311), "CNN,1,"));
 
-        new MergeSorter().sort(array, (o1, o2) -> {
-
-            if (o1.getId() > o2.getId())
-                return 1;
-            else if (o1.getId() < o2.getId())
-                return -1;
-            else
-                return 0;
-        });
+        new BubbleSorter().sort(array, Comparator.comparingInt(Contract::getId));
 
         int expected1 = 1;
         int expected2 = 2;
