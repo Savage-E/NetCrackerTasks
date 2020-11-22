@@ -3,8 +3,11 @@ import com.netcracker.Repository;
 import com.netcracker.contracts.CellularContract;
 import com.netcracker.contracts.Contract;
 import com.netcracker.contracts.DigitalTVContract;
+import com.netcracker.sorters.BubbleSorter;
+import com.netcracker.sorters.MergeSorter;
 import org.joda.time.LocalDate;
 import org.joda.time.chrono.CopticChronology;
+import org.junit.Before;
 import org.junit.Test;
 
 import java.util.ArrayList;
@@ -15,6 +18,10 @@ import static org.junit.Assert.*;
 public class RepositoryTests {
     Repository repo = new Repository();
 
+    @Before
+    public void initRepo(){
+        repo=new Repository();
+    }
     @Test
     public void whenSetNewContractThenContractsUpdated() {
         repo.add(new DigitalTVContract(1, new LocalDate(2010, 12, 12, CopticChronology.getInstance()), new LocalDate(2010, 12, 21, CopticChronology.getInstance()), 33, new Person(1, "Fydor Potapov", new LocalDate(1999, 10, 23, CopticChronology.getInstance()), "male", 21312311), "CNN,1,"));
@@ -175,7 +182,7 @@ public class RepositoryTests {
                     return 0;*/
 
             }
-        }, 1);
+        }, new BubbleSorter());
 
         ArrayList<Contract> list = repo.toArrayList();
         ArrayList<String> expected = new ArrayList<>();
@@ -221,7 +228,7 @@ public class RepositoryTests {
         repo.add(new CellularContract(2, new LocalDate(2010, 12, 12, CopticChronology.getInstance()), new LocalDate(2010, 12, 21, CopticChronology.getInstance()), 4323, new Person(1, "Andrew Bolton", new LocalDate(1999, 10, 23, CopticChronology.getInstance()), "male", 21312311), 423, 3432, 123412));
         repo.add(new DigitalTVContract(4, new LocalDate(2010, 12, 12, CopticChronology.getInstance()), new LocalDate(2010, 12, 21, CopticChronology.getInstance()), 234, new Person(4, "Vlad Kotov", new LocalDate(1999, 10, 23, CopticChronology.getInstance()), "male", 21312311), "CNN,1,"));
 
-        repo.sortBy((o1, o2) -> o1.getPerson().getFio().compareTo(o2.getPerson().getFio()), 2);
+        repo.sortBy((o1, o2) -> o1.getPerson().getFio().compareTo(o2.getPerson().getFio()), new MergeSorter());
 
         ArrayList<Contract> list = repo.toArrayList();
         ArrayList<String> expected = new ArrayList<>();

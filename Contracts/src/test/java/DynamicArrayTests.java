@@ -5,14 +5,19 @@ import com.netcracker.contracts.Contract;
 import com.netcracker.contracts.DigitalTVContract;
 import org.joda.time.LocalDate;
 import org.joda.time.chrono.CopticChronology;
+import org.junit.Before;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
 public class DynamicArrayTests {
-    DynamicArray<Contract> contracts = new DynamicArray<>();
+    DynamicArray<Contract> contracts;
 
+    @Before
+    public void initArray() {
+        contracts = new DynamicArray<>();
+    }
 
     @Test
     public void whenInsertNewElementThenTrueReturned() {

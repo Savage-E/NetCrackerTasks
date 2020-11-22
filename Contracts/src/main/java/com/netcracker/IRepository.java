@@ -1,6 +1,8 @@
 package com.netcracker;
 
 
+import com.netcracker.sorters.ISorter;
+
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.function.Predicate;
@@ -63,9 +65,9 @@ public interface IRepository<T> {
      * Sorts repository with specified comparator.
      *
      * @param comparator the comparator to use to sort
-     * @param option     the variant of the sort method(1-BubbleSort,2-MergeSort)
+     * @param sorter     the type of sorter to sort
      */
-    void sortBy(Comparator<T> comparator, int option);
+    void sortBy(Comparator<T> comparator, ISorter sorter);
 
 }
 

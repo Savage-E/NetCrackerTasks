@@ -3,6 +3,7 @@ package com.netcracker;
 
 import com.netcracker.contracts.Contract;
 import com.netcracker.sorters.BubbleSorter;
+import com.netcracker.sorters.ISorter;
 import com.netcracker.sorters.MergeSorter;
 
 import java.util.ArrayList;
@@ -30,19 +31,16 @@ public class Repository implements IRepository<Contract> {
      * Sorts repository with specified comparator.
      *
      * @param comparator the comparator to use to sort
-     * @param option     the variant of the sort method(1-BubbleSort,2-MergeSort)
+     * @param sorter     the type of sorter to sort
      */
     @Override
-    public void sortBy(Comparator<Contract> comparator, int option) {
-
-        if (option == 1) {
-            new BubbleSorter().sort(repo, comparator);
+    public void sortBy(Comparator<Contract> comparator, ISorter sorter) {
 
 
-        }
-        if (option == 2) {
-            new MergeSorter().sort(repo, comparator);
-        }
+        sorter.sort(repo, comparator);
+
+
+
     }
 
     /**
