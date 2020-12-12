@@ -1,7 +1,7 @@
 package com.netcracker;
 
 
-import com.netcracker.contracts.Contract;
+import com.netcracker.entities.Contract;
 import com.netcracker.sorters.ISorter;
 import java.util.ArrayList;
 import java.util.Comparator;

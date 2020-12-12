@@ -1,4 +1,4 @@
-package com.netcracker;
+package com.netcracker.entities;
 
 import org.jetbrains.annotations.NotNull;
 import org.joda.time.LocalDate;

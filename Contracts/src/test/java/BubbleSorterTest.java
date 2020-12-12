@@ -1,8 +1,8 @@
 import com.netcracker.DynamicArray;
-import com.netcracker.Person;
-import com.netcracker.contracts.CellularContract;
-import com.netcracker.contracts.Contract;
-import com.netcracker.contracts.DigitalTvContract;
+import com.netcracker.entities.Person;
+import com.netcracker.entities.CellularContract;
+import com.netcracker.entities.Contract;
+import com.netcracker.entities.DigitalTvContract;
 import com.netcracker.sorters.BubbleSorter;
 import org.joda.time.LocalDate;
 import org.joda.time.chrono.CopticChronology;

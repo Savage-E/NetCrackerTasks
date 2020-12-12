@@ -1,9 +1,6 @@
 package com.netcracker;
 
-import com.netcracker.contracts.CellularContract;
-import com.netcracker.contracts.Contract;
-import com.netcracker.contracts.DigitalTvContract;
-import com.netcracker.contracts.InternetContract;
+import com.netcracker.entities.*;
 import com.opencsv.CSVParser;
 import com.opencsv.CSVParserBuilder;
 import com.opencsv.CSVReader;
@@ -32,33 +29,27 @@ public class LoadFromCsvFile {
    * @param repository the repository where to add contracts
    */
   public static void readFrom(String filePath, IRepository<Contract> repository) {
-    FileReader filereader = null;
+    FileReader filereader ;
     ArrayList<String[]> allData;
+
     try {
       filereader = new FileReader(filePath);
-
-
-    } catch (FileNotFoundException e) {
-      System.out.println("Error to open the file");
-      e.printStackTrace();
-
-
-    }
-
-    try {
       CSVParser parser = new CSVParserBuilder().withSeparator(';').build();
-      assert filereader != null;
       CSVReader csvReader = new CSVReaderBuilder(filereader)
               .withCSVParser(parser)
               .build();
       allData = (ArrayList<String[]>) csvReader.readAll();
       addContracts(allData, repository);
 
+
+    } catch (FileNotFoundException e) {
+      System.out.println("Error to open the file");
+      e.printStackTrace();
     } catch (IOException e) {
       e.printStackTrace();
-      System.out.println("Error to read the date from file");
-
+      System.out.println("Error to read the data from file");
     }
+
 
   }
 

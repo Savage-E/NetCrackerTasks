@@ -1,6 +1,5 @@
-package com.netcracker.contracts;
+package com.netcracker.entities;
 
-import com.netcracker.Person;
 import org.jetbrains.annotations.NotNull;
 import org.joda.time.LocalDate;
 

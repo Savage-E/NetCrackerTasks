@@ -33,6 +33,7 @@ public final class DynamicArray<T> implements Iterable<T> {
    *
    * @param index the index of the element to return
    * @return the element at the specified position in this array
+   * @exception ArrayIndexOutOfBoundsException if index greater than size of array
    */
   public T get(int index) {
     if (index < 0 || index >= size()) {
@@ -49,6 +50,7 @@ public final class DynamicArray<T> implements Iterable<T> {
    * @param index    the index of the element to replace
    * @param newValue - new value to be stored at the specified position
    * @return the element previously at the specified position
+   * @exception ArrayIndexOutOfBoundsException if index greater than size of array
    */
   public T set(int index, T newValue) {
     if (index < 0 || index >= size()) {
