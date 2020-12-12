@@ -75,6 +75,12 @@ public final class Person {
   }
 
   public int getAge() {
-    return Years.yearsBetween(birthday, LocalDate.now()).getYears();
+    LocalDate localDate= LocalDate.now();
+    int start=birthday.year().get();
+    int end = LocalDate.now().year().get();
+
+    //return Years.yearsBetween(birthday, LocalDate.now()).getYears();
+    return end-start;
   }
+
 }

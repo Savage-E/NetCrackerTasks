@@ -1,8 +1,8 @@
-import com.netcracker.entities.Person;
 import com.netcracker.Repository;
 import com.netcracker.entities.CellularContract;
 import com.netcracker.entities.Contract;
 import com.netcracker.entities.DigitalTvContract;
+import com.netcracker.entities.Person;
 import com.netcracker.sorters.BubbleSorter;
 import com.netcracker.sorters.MergeSorter;
 import org.joda.time.LocalDate;
@@ -25,9 +25,24 @@ public class RepositoryTest {
 
   @Test
   public void whenSetNewContractThenContractsUpdated() {
-    repo.add(new DigitalTvContract(1, new LocalDate(2010, 12, 12, CopticChronology.getInstance()), new LocalDate(2010, 12, 21, CopticChronology.getInstance()), 33, new Person(1, "Fydor Potapov", new LocalDate(1999, 10, 23, CopticChronology.getInstance()), "male", 21312311), "CNN,1,"));
-    repo.add(new CellularContract(8, new LocalDate(2010, 12, 12, CopticChronology.getInstance()), new LocalDate(2010, 12, 21, CopticChronology.getInstance()), 43223, new Person(1, "fewe", new LocalDate(1999, 10, 23, CopticChronology.getInstance()), "male", 21312311), 423, 3432, 123412));
-    repo.set(1, new CellularContract(3, new LocalDate(2010, 12, 12, CopticChronology.getInstance()), new LocalDate(2010, 12, 21, CopticChronology.getInstance()), 52, new Person(1, "fewe", new LocalDate(1999, 10, 23, CopticChronology.getInstance()), "male", 21312311), 423, 3432, 123412));
+    repo.add(new DigitalTvContract(1, new LocalDate(2010, 12, 12, CopticChronology.getInstance()),
+            new LocalDate(2010, 12, 21, CopticChronology.getInstance()),
+            33, new Person(1, "Fydor Potapov", new LocalDate(1999, 10, 23, CopticChronology.getInstance()),
+            "male", 21312311), "CNN,1,")
+    );
+
+    repo.add(new CellularContract(8, new LocalDate(2010, 12, 12, CopticChronology.getInstance()),
+            new LocalDate(2010, 12, 21, CopticChronology.getInstance()),
+            43223, new Person(1, "fewe", new LocalDate(1999, 10, 23, CopticChronology.getInstance()),
+            "male", 21312311), 423, 3432, 123412)
+    );
+
+    repo.set(1, new CellularContract(3, new LocalDate(2010, 12, 12, CopticChronology.getInstance()),
+            new LocalDate(2010, 12, 21, CopticChronology.getInstance()),
+            52, new Person(1, "fewe", new LocalDate(1999, 10, 23, CopticChronology.getInstance()),
+            "male", 21312311), 423, 3432, 123412)
+    );
+
     int expected = 3;
     int actual = repo.get(3).getId();
     assertEquals(expected, actual);
@@ -35,10 +50,24 @@ public class RepositoryTest {
 
   @Test
   public void whenSetNewContractThenPreviousContractReturned() {
-    repo.add(new DigitalTvContract(1, new LocalDate(2010, 12, 12, CopticChronology.getInstance()), new LocalDate(2010, 12, 21, CopticChronology.getInstance()), 34, new Person(1, "Fydor Potapov", new LocalDate(1999, 10, 23, CopticChronology.getInstance()), "male", 21312311), "CNN,1,"));
-    repo.add(new CellularContract(8, new LocalDate(2010, 12, 12, CopticChronology.getInstance()), new LocalDate(2010, 12, 21, CopticChronology.getInstance()), 2345, new Person(1, "fewe", new LocalDate(1999, 10, 23, CopticChronology.getInstance()), "male", 21312311), 423, 3432, 123412));
+    repo.add(new DigitalTvContract(1, new LocalDate(2010, 12, 12, CopticChronology.getInstance()),
+            new LocalDate(2010, 12, 21, CopticChronology.getInstance()),
+            34, new Person(1, "Fydor Potapov", new LocalDate(1999, 10, 23, CopticChronology.getInstance()),
+            "male", 21312311), "CNN,1,")
+    );
+
+    repo.add(new CellularContract(8, new LocalDate(2010, 12, 12, CopticChronology.getInstance()),
+            new LocalDate(2010, 12, 21, CopticChronology.getInstance()),
+            2345, new Person(1, "fewe", new LocalDate(1999, 10, 23, CopticChronology.getInstance()),
+            "male", 21312311), 423, 3432, 123412)
+    );
     int expected = 1;
-    int actual = repo.set(1, new CellularContract(3, new LocalDate(2010, 12, 12, CopticChronology.getInstance()), new LocalDate(2010, 12, 21, CopticChronology.getInstance()), 45, new Person(1, "fewe", new LocalDate(1999, 10, 23, CopticChronology.getInstance()), "male", 21312311), 423, 3432, 123412)).getId();
+
+    int actual = repo.set(1, new CellularContract(3, new LocalDate(2010, 12, 12, CopticChronology.getInstance()),
+            new LocalDate(2010, 12, 21, CopticChronology.getInstance()),
+            45, new Person(1, "fewe", new LocalDate(1999, 10, 23, CopticChronology.getInstance()),
+            "male", 21312311), 423, 3432, 123412)
+    ).getId();
     assertEquals(expected, actual);
   }
 
@@ -209,7 +238,12 @@ public class RepositoryTest {
 
   @Test
   public void whenSortByFioMergeSortThenRepositorySorted() {
-    repo.add(new DigitalTvContract(31, new LocalDate(2010, 12, 12, CopticChronology.getInstance()), new LocalDate(2010, 12, 21, CopticChronology.getInstance()), 34, new Person(1, "Fydor Potapov", new LocalDate(1999, 10, 23, CopticChronology.getInstance()), "male", 21312311), "CNN,1,"));
+    repo.add(new DigitalTvContract(31, new LocalDate(2010, 12, 12, CopticChronology.getInstance()),
+            new LocalDate(2010, 12, 21, CopticChronology.getInstance()),
+            34, new Person(1, "Fydor Potapov", new LocalDate(1999, 10, 23, CopticChronology.getInstance()),
+            "male", 21312311), "CNN,1,")
+    );
+
     repo.add(new DigitalTvContract(1, new LocalDate(2010, 12, 12, CopticChronology.getInstance()), new LocalDate(2010, 12, 21, CopticChronology.getInstance()), 3423, new Person(3, "Andrew Betman", new LocalDate(1999, 10, 23, CopticChronology.getInstance()), "male", 21312311), "CNN,1,"));
     repo.add(new DigitalTvContract(5, new LocalDate(2010, 12, 12, CopticChronology.getInstance()), new LocalDate(2010, 12, 21, CopticChronology.getInstance()), 2423, new Person(4, "Lolita Vorobyova", new LocalDate(1999, 10, 23, CopticChronology.getInstance()), "female", 21312311), "CNN,1,"));
     repo.add(new CellularContract(2, new LocalDate(2010, 12, 12, CopticChronology.getInstance()), new LocalDate(2010, 12, 21, CopticChronology.getInstance()), 4323, new Person(1, "Andrew Bolton", new LocalDate(1999, 10, 23, CopticChronology.getInstance()), "male", 21312311), 423, 3432, 123412));

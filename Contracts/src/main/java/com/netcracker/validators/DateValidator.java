@@ -6,7 +6,7 @@ import org.joda.time.LocalDate;
 /**
  *
  */
-public class DateValidation implements Validator<Contract> {
+public class DateValidator implements Validator<Contract> {
   /**
    * @param contract
    * @return Validates the contract on correct

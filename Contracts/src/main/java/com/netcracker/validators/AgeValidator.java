@@ -7,12 +7,13 @@ import com.netcracker.entities.Contract;
  */
 public class AgeValidator implements Validator<Contract> {
   /**
-   * Validates the contract on correct age
+   * Validates the contract on the correct age.
+   *
    * @param contract the contract to validate
    * @return the message with result of validation
    */
   @Override
-  public Message validate(Contract contract) {
+  public  Message validate(Contract contract) {
 
     Message message = new Message();
     int age = contract.getPerson().getAge();

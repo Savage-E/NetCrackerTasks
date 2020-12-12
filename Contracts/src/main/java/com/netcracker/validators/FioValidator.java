@@ -17,7 +17,7 @@ public class FioValidator implements Validator<Contract> {
    * @return the message with result of validation
    */
   @Override
-  public Message validate(Contract contract) {
+  public  Message validate(Contract contract) {
     Message message = new Message();
     String[] fio = contract.getPerson().getFio().split(" ");
 
