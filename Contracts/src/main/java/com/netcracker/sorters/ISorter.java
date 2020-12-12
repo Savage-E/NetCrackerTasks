@@ -9,5 +9,5 @@ import java.util.Comparator;
  * @param <T> the comparator to use to sort
  */
 public interface ISorter<E, T> {
-    void sort(E list, Comparator<T> comparator);
+  void sort(E list, Comparator<T> comparator);
 }
