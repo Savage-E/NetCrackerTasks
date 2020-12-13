@@ -74,13 +74,16 @@ public final class Person {
     this.passportNumSeries = passportNumSeries;
   }
 
+  /**
+   * Returns age of the specified person.
+   * @return the person age
+   */
   public int getAge() {
-    LocalDate localDate= LocalDate.now();
-    int start=birthday.year().get();
+    LocalDate localDate = LocalDate.now();
+    int start = birthday.year().get();
     int end = LocalDate.now().year().get();
 
-    //return Years.yearsBetween(birthday, LocalDate.now()).getYears();
-    return end-start;
+    return end - start;
   }
 
 }

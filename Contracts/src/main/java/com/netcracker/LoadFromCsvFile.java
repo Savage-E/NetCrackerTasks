@@ -1,6 +1,15 @@
 package com.netcracker;
 
-import com.netcracker.entities.*;
+import com.netcracker.entities.Contract;
+import com.netcracker.entities.CellularContract;
+import com.netcracker.entities.DigitalTvContract;
+import com.netcracker.entities.InternetContract;
+import com.netcracker.entities.Person;
+import com.netcracker.validators.AgeValidator;
+import com.netcracker.validators.DateValidator;
+import com.netcracker.validators.FioValidator;
+import com.netcracker.validators.Message;
+import com.netcracker.validators.Status;
 import com.opencsv.CSVParser;
 import com.opencsv.CSVParserBuilder;
 import com.opencsv.CSVReader;
@@ -29,7 +38,7 @@ public class LoadFromCsvFile {
    * @param repository the repository where to add contracts
    */
   public static void readFrom(String filePath, IRepository<Contract> repository) {
-    FileReader filereader ;
+    FileReader filereader;
     ArrayList<String[]> allData;
 
     try {
@@ -127,12 +136,35 @@ public class LoadFromCsvFile {
         default:
           break;
       }
-
-      repository.add(newContract);
+      if (validation(newContract)) {
+        repository.add(newContract);
+      } else {
+        System.out.println("Cannot add contract with id" + newContract.getId());
+      }
     }
   }
 
+  private static boolean validation(Contract newContract) {
+    Message[] messages = new Message[3];
+    boolean result = false;
+    FioValidator fioValidator = new FioValidator();
+    AgeValidator ageValidator = new AgeValidator();
+    DateValidator dateValidator = new DateValidator();
+
+    messages[0] = fioValidator.validate(newContract);
+    messages[1] = dateValidator.validate(newContract);
+    messages[2] = ageValidator.validate(newContract);
+    for (Message m : messages) {
+      if (m.getStatus() == Status.ERROR) {
+        System.out.println(m.getMessage());
+        return result;
+      }
+    }
+    result = true;
+    return result;
+  }
 }
+
 
 
 

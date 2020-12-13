@@ -1,7 +1,7 @@
 package com.netcracker.validators;
 
 /**
- *Status of validation.
+ * Status of validation.
  */
 public enum Status {
   OK,

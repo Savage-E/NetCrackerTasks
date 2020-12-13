@@ -4,12 +4,15 @@ import com.netcracker.entities.Contract;
 import org.joda.time.LocalDate;
 
 /**
- *
+ * Represents validation for contract dates.
+ * @author Vlad Kotov
  */
 public class DateValidator implements Validator<Contract> {
   /**
-   * @param contract
-   * @return Validates the contract on correct
+   * Validates the contract on correct start and end dates of its duration.
+   *
+   * @param contract the contract to validate
+   * @return the message with result of validation
    */
   @Override
   public Message validate(Contract contract) {
@@ -20,10 +23,15 @@ public class DateValidator implements Validator<Contract> {
     LocalDate currentDate = LocalDate.now();
     if (currentDate.compareTo(startDate) < 0) {
       message.setStatus(Status.ERROR);
-      message.setMessage("Invalid date. The start day of the contract cannot be greater than " +
-              "the current day");
+      message.setMessage("Invalid date. The start day of the contract cannot be greater than "
+             + "the current day");
       return message;
 
+    } else if (startDate.compareTo(endDate) >= 0) {
+      message.setStatus(Status.ERROR);
+      message.setMessage("Invalid dates. The start day of the contract cannot be greater than"
+              + " the end date or equal to it");
+      return message;
     } else if (currentDate.compareTo(endDate) == 0) {
       message.setStatus(Status.WARNING);
       message.setMessage("Contract expires today");
@@ -33,11 +41,6 @@ public class DateValidator implements Validator<Contract> {
       message.setMessage("Contract expired");
       return message;
 
-    } else if (startDate.compareTo(endDate) >= 0) {
-      message.setStatus(Status.ERROR);
-      message.setMessage("Invalid dates. The start day of the contract cannot be greater than" +
-              " the end date or equal to it");
-      return message;
     } else {
       message.setStatus(Status.OK);
       return message;

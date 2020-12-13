@@ -1,12 +1,13 @@
 package com.netcracker.validators;
 
 import com.netcracker.entities.Contract;
-
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 
 /**
+ * Represents validation for full name.
+ *
  * @author Vlad Kotov
  */
 public class FioValidator implements Validator<Contract> {
@@ -17,20 +18,21 @@ public class FioValidator implements Validator<Contract> {
    * @return the message with result of validation
    */
   @Override
-  public  Message validate(Contract contract) {
+  public Message validate(Contract contract) {
     Message message = new Message();
-    String[] fio = contract.getPerson().getFio().split(" ");
 
-    Pattern pattern = Pattern.compile("/^[a-z ,.'-]+$/i");
+    String fio = contract.getPerson().getFio();
+
+    Pattern pattern = Pattern.compile("^[a-zA-Z]{4,}(?: [a-zA-Z]+){0,2}$");
     Matcher matcher;
-    for (String s : fio) {
-      matcher = pattern.matcher(s);
-      if (!matcher.matches()) {
-        message.setMessage("Invalid FIO");
-        message.setStatus(Status.ERROR);
-        return message;
-      }
+    matcher = pattern.matcher(fio);
+
+    if (!matcher.matches()) {
+      message.setMessage("Invalid FIO");
+      message.setStatus(Status.ERROR);
+      return message;
     }
+
     message.setStatus(Status.OK);
     return message;
   }

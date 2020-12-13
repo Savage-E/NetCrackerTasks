@@ -1,8 +1,8 @@
-import com.netcracker.entities.Person;
 import com.netcracker.Repository;
 import com.netcracker.entities.CellularContract;
 import com.netcracker.entities.Contract;
 import com.netcracker.entities.DigitalTvContract;
+import com.netcracker.entities.Person;
 import org.joda.time.LocalDate;
 import org.joda.time.chrono.CopticChronology;
 import org.junit.Before;
@@ -12,6 +12,7 @@ import java.util.ArrayList;
 
 import static com.netcracker.LoadFromCsvFile.readFrom;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNull;
 
 public class LoadFromCSVFileTest {
 
@@ -22,13 +23,9 @@ public class LoadFromCSVFileTest {
     repository = new Repository();
   }
 
-  /*@Test(expected = IOException.class)
-  public void whenReadFromIncorrectFilePathThenAssertionError() {
-    readFrom("src\\test\\resources\\s", repository);
-  }*/
 
   @Test
-  public void whenReadFromFileToEmptyRepoThenRepositoryFilled() {
+  public void whenReadToEmptyRepoThenRepositoryFilled() {
     readFrom("src\\test\\resources\\Testcontracts", repository);
     ArrayList<Contract> arrayList = repository.toArrayList();
     String expectedFio = "Kotov Vladislav Olegovich";
@@ -40,12 +37,46 @@ public class LoadFromCSVFileTest {
   }
 
   @Test
-  public void whenReadFromFileToRepoThenContractsAdded() {
-    repository.add(new DigitalTvContract(31, new LocalDate(2010, 12, 12, CopticChronology.getInstance()), new LocalDate(2010, 12, 21, CopticChronology.getInstance()), 34, new Person(1, "Fydor Potapov", new LocalDate(1999, 10, 23, CopticChronology.getInstance()), "male", 21312311), "CNN,1,"));
-    repository.add(new DigitalTvContract(1, new LocalDate(2010, 12, 12, CopticChronology.getInstance()), new LocalDate(2010, 12, 21, CopticChronology.getInstance()), 3423, new Person(3, "Andrew Betman", new LocalDate(1999, 10, 23, CopticChronology.getInstance()), "male", 21312311), "CNN,1,"));
-    repository.add(new DigitalTvContract(5, new LocalDate(2010, 12, 12, CopticChronology.getInstance()), new LocalDate(2010, 12, 21, CopticChronology.getInstance()), 2423, new Person(4, "Lolita Vorobyova", new LocalDate(1999, 10, 23, CopticChronology.getInstance()), "female", 21312311), "CNN,1,"));
-    repository.add(new CellularContract(2, new LocalDate(2010, 12, 12, CopticChronology.getInstance()), new LocalDate(2010, 12, 21, CopticChronology.getInstance()), 4323, new Person(1, "Andrew Bolton", new LocalDate(1999, 10, 23, CopticChronology.getInstance()), "male", 21312311), 423, 3432, 123412));
-    repository.add(new DigitalTvContract(32, new LocalDate(2010, 12, 12, CopticChronology.getInstance()), new LocalDate(2010, 12, 21, CopticChronology.getInstance()), 234, new Person(4, "Vlad Kotov", new LocalDate(1999, 10, 23, CopticChronology.getInstance()), "male", 21312311), "CNN,1,"));
+  public void whenReadContractsThenAdded() {
+    repository.add(new DigitalTvContract(31,
+            new LocalDate(2010, 12, 12, CopticChronology.getInstance()),
+            new LocalDate(2010, 12, 21, CopticChronology.getInstance()),
+            34, new Person(1, "Fydor Potapov",
+            new LocalDate(1999, 10, 23, CopticChronology.getInstance()),
+            "male", 21312311), "CNN,1,")
+    );
+    repository.add(new DigitalTvContract(1,
+            new LocalDate(2010, 12, 12, CopticChronology.getInstance()),
+            new LocalDate(2010, 12, 21, CopticChronology.getInstance()),
+            3423, new Person(3, "Andrew Betman",
+            new LocalDate(1999, 10, 23, CopticChronology.getInstance()),
+            "male", 21312311), "CNN,1,")
+    );
+
+    repository.add(new DigitalTvContract(5,
+            new LocalDate(2010, 12, 12, CopticChronology.getInstance()),
+            new LocalDate(2010, 12, 21, CopticChronology.getInstance()),
+            2423, new Person(4, "Lolita Vorobyova",
+            new LocalDate(1999, 10, 23, CopticChronology.getInstance()),
+            "female", 21312311), "CNN,1,")
+    );
+
+    repository.add(new CellularContract(2,
+            new LocalDate(2010, 12, 12, CopticChronology.getInstance()),
+            new LocalDate(2010, 12, 21, CopticChronology.getInstance()),
+            4323, new Person(1, "Andrew Bolton",
+            new LocalDate(1999, 10, 23, CopticChronology.getInstance()),
+            "male", 21312311), 423, 3432, 123412)
+    );
+
+    repository.add(new DigitalTvContract(32,
+            new LocalDate(2010, 12, 12, CopticChronology.getInstance()),
+            new LocalDate(2010, 12, 21, CopticChronology.getInstance()),
+            234, new Person(4, "Vlad Kotov",
+            new LocalDate(1999, 10, 23, CopticChronology.getInstance()),
+            "male", 21312311), "CNN,1,")
+    );
+
     readFrom("src\\test\\resources\\Testcontracts", repository);
     ArrayList<Contract> arrayList = repository.toArrayList();
 
@@ -65,5 +96,77 @@ public class LoadFromCSVFileTest {
     assertEquals(expectedId2, actualId2);
   }
 
+  @Test
+  public void whenReadWithContractAge210ThenContractRejected() {
+    repository.add(new DigitalTvContract(5,
+            new LocalDate(2010, 12, 12, CopticChronology.getInstance()),
+            new LocalDate(2010, 12, 21, CopticChronology.getInstance()),
+            2423, new Person(4, "Lolita Vorobyova",
+            new LocalDate(1999, 10, 23, CopticChronology.getInstance()),
+            "female", 21312311), "CNN,1,")
+    );
+
+    repository.add(new CellularContract(2,
+            new LocalDate(2010, 12, 12, CopticChronology.getInstance()),
+            new LocalDate(2010, 12, 21, CopticChronology.getInstance()),
+            4323, new Person(1, "Andrew Bolton",
+            new LocalDate(1999, 10, 23, CopticChronology.getInstance()),
+            "male", 21312311), 423, 3432, 123412)
+    );
+
+    repository.add(new DigitalTvContract(34,
+            new LocalDate(2010, 12, 12, CopticChronology.getInstance()),
+            new LocalDate(2010, 12, 21, CopticChronology.getInstance()),
+            234, new Person(4, "Vlad Kotov",
+            new LocalDate(1999, 10, 23, CopticChronology.getInstance()),
+            "male", 21312311), "CNN,1,")
+    );
+
+    readFrom("src\\test\\resources\\Contracts2", repository);
+    Contract expected = repository.get(32);
+    assertNull(expected);
+  }
+
+
+  @Test
+  public void whenReadWithAgeContract14ThenContractRejected() {
+
+    readFrom("src\\test\\resources\\Contracts3", repository);
+    Contract expected = repository.get(32);
+    assertNull(expected);
+  }
+
+  @Test
+  public void whenReadCorrectAgeDataFioContractThenContractAdded() {
+
+    readFrom("src\\test\\resources\\TestContracts", repository);
+    String expected = "Kotov Vladislav Olegovich";
+    String actual = repository.get(32).getPerson().getFio();
+    assertEquals(expected, actual);
+  }
+
+  @Test
+  public void whenReadWrongFioContractThenContractRejected() {
+
+
+    readFrom("src\\test\\resources\\Contracts2", repository);
+    Contract expected = repository.get(31);
+    assertNull(expected);
+  }
+
+  @Test
+  public void whenReadWrongContractsDatesThenContractsRejected() {
+
+    readFrom("src\\test\\resources\\WrongContractDates", repository);
+    Contract expected1 = repository.get(31);
+    Contract expected2 = repository.get(32);
+    assertNull(expected1);
+    assertNull(expected2);
+
+  }
 
 }
+
+
+
+

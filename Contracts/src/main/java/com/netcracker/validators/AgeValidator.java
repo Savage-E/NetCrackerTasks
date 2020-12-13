@@ -3,7 +3,8 @@ package com.netcracker.validators;
 import com.netcracker.entities.Contract;
 
 /**
- *
+ *Represents validation for age.
+ *@author Vlad Kotov
  */
 public class AgeValidator implements Validator<Contract> {
   /**
@@ -13,7 +14,7 @@ public class AgeValidator implements Validator<Contract> {
    * @return the message with result of validation
    */
   @Override
-  public  Message validate(Contract contract) {
+  public Message validate(Contract contract) {
 
     Message message = new Message();
     int age = contract.getPerson().getAge();
@@ -25,7 +26,8 @@ public class AgeValidator implements Validator<Contract> {
       message.setMessage("The age of the person is too great perhaps there is a mistake");
       return message;
     } else {
-      message.setMessage("Invalid age of the person. Age cannot be less than 14 and greater than 120");
+      message.setMessage("Invalid age of the person."
+              + " Age cannot be less than 14 and greater than 120");
       message.setStatus(Status.ERROR);
       return message;
     }
