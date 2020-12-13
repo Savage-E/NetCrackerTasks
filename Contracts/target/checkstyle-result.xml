@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<checkstyle version="8.29">
+<file name="D:\IdeaProjects\NetCrackerTasks\Contracts\src\main\java\com\netcracker\LoadFromCsvFile.java">
+<error line="4" severity="warning" message="Wrong lexicographical order for &apos;com.netcracker.entities.CellularContract&apos; import. Should be before &apos;com.netcracker.entities.Contract&apos;." source="com.puppycrawl.tools.checkstyle.checks.imports.CustomImportOrderCheck"/>
+</file>
+</checkstyle>
