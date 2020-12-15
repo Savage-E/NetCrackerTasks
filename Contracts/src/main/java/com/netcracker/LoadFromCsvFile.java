@@ -19,6 +19,9 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.joda.time.LocalDate;
 
 
@@ -29,7 +32,7 @@ import org.joda.time.LocalDate;
  * @author Vlad Kotov
  */
 public class LoadFromCsvFile {
-
+  private static final Logger logger = LogManager.getLogger(LoadFromCsvFile.class);
 
   /**
    * Reads contracts from specified file.
@@ -38,6 +41,7 @@ public class LoadFromCsvFile {
    * @param repository the repository where to add contracts
    */
   public static void readFrom(String filePath, IRepository<Contract> repository) {
+    logger.debug("Starting reading from file");
     FileReader filereader;
     ArrayList<String[]> allData;
 
@@ -52,18 +56,19 @@ public class LoadFromCsvFile {
 
 
     } catch (FileNotFoundException e) {
-      System.out.println("Error to open the file");
-      e.printStackTrace();
+      logger.info("Error to open the file");
+      logger.error("Exception:",e);
+
     } catch (IOException e) {
-      e.printStackTrace();
-      System.out.println("Error to read the data from file");
+      logger.info("Error to read the data from file");
+      logger.error("Exception:",e);
     }
 
-
+    logger.debug("Exiting reading from file");
   }
 
   private static void addContracts(List<String[]> contracts, IRepository<Contract> repository) {
-
+    logger.debug("Starting adding the new contract");
     int clientId;
     int contractId;
     LocalDate startDate;
@@ -139,12 +144,14 @@ public class LoadFromCsvFile {
       if (validation(newContract)) {
         repository.add(newContract);
       } else {
-        System.out.println("Cannot add contract with id" + newContract.getId());
+        logger.info("Cannot add contract with id" + newContract.getId());
       }
     }
+    logger.debug("Exiting from adding new contract");
   }
 
   private static boolean validation(Contract newContract) {
+    logger.debug("Starting validation the contract");
     Message[] messages = new Message[3];
     boolean result = false;
     FioValidator fioValidator = new FioValidator();
@@ -156,12 +163,15 @@ public class LoadFromCsvFile {
     messages[2] = ageValidator.validate(newContract);
     for (Message m : messages) {
       if (m.getStatus() == Status.ERROR) {
-        System.out.println(m.getMessage());
+        logger.info(m.getMessage());
+        logger.debug("Exiting from validation");
         return result;
       }
     }
     result = true;
+    logger.debug("Exiting from validation");
     return result;
+
   }
 }
 

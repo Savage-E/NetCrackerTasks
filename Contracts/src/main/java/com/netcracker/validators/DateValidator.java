@@ -5,6 +5,7 @@ import org.joda.time.LocalDate;
 
 /**
  * Represents validation for contract dates.
+ * <p>Please see the {@link com.netcracker.validators.Validator} interface for true identity
  * @author Vlad Kotov
  */
 public class DateValidator implements Validator<Contract> {

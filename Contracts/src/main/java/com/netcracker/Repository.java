@@ -3,6 +3,8 @@ package com.netcracker;
 
 import com.netcracker.entities.Contract;
 import com.netcracker.sorters.ISorter;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.function.Predicate;
@@ -16,7 +18,7 @@ import java.util.function.Predicate;
  */
 public class Repository implements IRepository<Contract> {
   private final DynamicArray<Contract> repo;
-
+  private static final Logger logger = LogManager.getLogger(Repository.class.getName());
   /**
    * Initializes repository.
    */
@@ -86,7 +88,7 @@ public class Repository implements IRepository<Contract> {
         return temp;
       }
     }
-    System.out.println("Contract with id " + id + " not found");
+    logger.info("Contract with id " + id + " not found");
     return null;
   }
 

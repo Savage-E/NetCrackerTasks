@@ -8,6 +8,7 @@ import java.util.regex.Pattern;
 /**
  * Represents validation for full name.
  *
+ * <p>Please see the {@link com.netcracker.validators.Validator} interface for true identity
  * @author Vlad Kotov
  */
 public class FioValidator implements Validator<Contract> {
