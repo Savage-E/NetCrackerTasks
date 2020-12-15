@@ -23,6 +23,7 @@ public class Repository implements IRepository<Contract> {
    * Initializes repository.
    */
   public Repository() {
+    logger.debug("Initializing DynamicArray");
     this.repo = new DynamicArray<>();
   }
 
@@ -34,9 +35,9 @@ public class Repository implements IRepository<Contract> {
    */
   @Override
   public void sortBy(Comparator<Contract> comparator, ISorter sorter) {
-
+    logger.debug("Starting sortBy method");
     sorter.sort(repo, comparator);
-
+    logger.debug("Exiting sortBy method");
   }
 
   /**
@@ -46,10 +47,13 @@ public class Repository implements IRepository<Contract> {
    */
   @Override
   public ArrayList<Contract> toArrayList() {
+    logger.debug("Starting toArrayList method");
+
     ArrayList<Contract> list = new ArrayList<>();
     for (Contract c : repo) {
       list.add(c);
     }
+    logger.debug("Exiting toArrayList method");
     return list;
   }
 
@@ -60,12 +64,14 @@ public class Repository implements IRepository<Contract> {
    * @return new repository with specific contracts satisfying the condition
    */
   public IRepository<Contract> searchBy(Predicate<Contract> condition) {
+    logger.debug("Starting searchBy method");
     Repository repository = new Repository();
     for (Contract c : repo) {
       if (condition.test(c)) {
         repository.add(c);
       }
     }
+    logger.debug("Exiting searchBy method");
     return repository;
   }
 
@@ -77,12 +83,15 @@ public class Repository implements IRepository<Contract> {
    * @return the contract at the specified position
    */
   public Contract set(int id, Contract contract) {
+    logger.debug("Exiting toArrayList method");
+
     Contract temp;
     for (int i = 0; i < repo.size(); i++) {
       temp = repo.get(i);
       if (temp.getId() == id) {
 
         repo.set(i, contract);
+        logger.debug("Exiting searchBy method");
         return temp;
       }
     }
