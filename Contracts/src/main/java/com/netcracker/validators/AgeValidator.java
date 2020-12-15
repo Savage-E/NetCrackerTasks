@@ -9,6 +9,7 @@ import com.netcracker.entities.Contract;
 public class AgeValidator implements Validator<Contract> {
   /**
    * Validates the contract on the correct age.
+   *
    *<p>Please see the {@link com.netcracker.validators.Validator} interface for true identity
    * @param contract the contract to validate
    * @return the message with result of validation

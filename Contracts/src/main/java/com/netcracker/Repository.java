@@ -3,11 +3,12 @@ package com.netcracker;
 
 import com.netcracker.entities.Contract;
 import com.netcracker.sorters.ISorter;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.function.Predicate;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 
 /**
  * Represents repository for contracts.
@@ -17,8 +18,9 @@ import java.util.function.Predicate;
  * @author Vlad Kotov
  */
 public class Repository implements IRepository<Contract> {
-  private final DynamicArray<Contract> repo;
   private static final Logger logger = LogManager.getLogger(Repository.class.getName());
+  private final DynamicArray<Contract> repo;
+
   /**
    * Initializes repository.
    */
@@ -83,7 +85,7 @@ public class Repository implements IRepository<Contract> {
    * @return the contract at the specified position
    */
   public Contract set(int id, Contract contract) {
-    logger.debug("Exiting toArrayList method");
+    logger.debug("Starting set method");
 
     Contract temp;
     for (int i = 0; i < repo.size(); i++) {
@@ -91,11 +93,12 @@ public class Repository implements IRepository<Contract> {
       if (temp.getId() == id) {
 
         repo.set(i, contract);
-        logger.debug("Exiting searchBy method");
+        logger.debug("Exiting set method");
         return temp;
       }
     }
     logger.info("Contract with id " + id + " not found");
+    logger.debug("Exiting set method");
     return null;
   }
 
@@ -106,13 +109,16 @@ public class Repository implements IRepository<Contract> {
    * @return the contract at the specified position in this array
    */
   public Contract get(int id) {
+    logger.debug("Starting get method");
     Contract temp;
     for (int i = 0; i < repo.size(); i++) {
       temp = repo.get(i);
       if (temp.getId() == id) {
+        logger.debug("Exiting get method");
         return temp;
       }
     }
+    logger.debug("Exiting get method");
     return null;
   }
 
@@ -123,14 +129,16 @@ public class Repository implements IRepository<Contract> {
    * @return true if this array contained the specified contract
    */
   public boolean delete(int id) {
-
+    logger.debug("Starting delete method");
     Contract temp;
     for (int i = 0; i < repo.size(); i++) {
       temp = repo.get(i);
       if (temp.getId() == id) {
+        logger.debug("Exiting delete method");
         return repo.remove(i);
       }
     }
+    logger.debug("Exiting delete method");
     return false;
   }
 
@@ -141,6 +149,8 @@ public class Repository implements IRepository<Contract> {
    * @return true if the contract was added to the array
    */
   public boolean add(Contract contract) {
+    logger.debug("Starting add method");
+    logger.debug("Exiting add method");
     return repo.add(contract);
   }
 
