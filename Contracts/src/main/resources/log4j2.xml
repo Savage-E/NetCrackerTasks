@@ -4,7 +4,7 @@
     <Filter type="ThresholdFilter" level="trace"/>
 
     <Appenders>
-        <Console name="STDOUT">
+        <Console name="STDOUT" target="SYSTEM_OUT">
             <Layout type="PatternLayout" pattern="%m %n"/>
         </Console>
         <RollingFile name="rollingFile"
@@ -22,13 +22,11 @@
     </Appenders>
 
     <Loggers>
-        <Logger name="com.netcracker" level="debug">
-            <AppenderRef ref="rollingFile"/>
-        </Logger>
-
-        <Root level="error">
-            <AppenderRef ref="STDOUT"/>
+        <Root level="trace">
+            <AppenderRef ref="STDOUT" level="info"/>
+            <AppenderRef ref="rollingFile" level="trace"/>
         </Root>
+
     </Loggers>
 
 </Configuration>

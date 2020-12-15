@@ -19,7 +19,6 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.joda.time.LocalDate;
@@ -41,7 +40,7 @@ public class LoadFromCsvFile {
    * @param repository the repository where to add contracts
    */
   public static void readFrom(String filePath, IRepository<Contract> repository) {
-    logger.debug("Starting reading from file");
+    logger.debug("Starting method readFrom");
     FileReader filereader;
     ArrayList<String[]> allData;
 
@@ -64,11 +63,11 @@ public class LoadFromCsvFile {
       logger.error("Exception:",e);
     }
 
-    logger.debug("Exiting reading from file");
+    logger.debug("Exiting method readFrom");
   }
 
   private static void addContracts(List<String[]> contracts, IRepository<Contract> repository) {
-    logger.debug("Starting adding the new contract");
+    logger.debug("Starting adding method addContract");
     int clientId;
     int contractId;
     LocalDate startDate;
@@ -142,16 +141,17 @@ public class LoadFromCsvFile {
           break;
       }
       if (validation(newContract)) {
+        logger.debug("Adding to repository new contract");
         repository.add(newContract);
       } else {
         logger.info("Cannot add contract with id" + newContract.getId());
       }
     }
-    logger.debug("Exiting from adding new contract");
+    logger.debug("Exiting from method addContract");
   }
 
   private static boolean validation(Contract newContract) {
-    logger.debug("Starting validation the contract");
+    logger.debug("Starting validation method");
     Message[] messages = new Message[3];
     boolean result = false;
     FioValidator fioValidator = new FioValidator();
@@ -164,12 +164,12 @@ public class LoadFromCsvFile {
     for (Message m : messages) {
       if (m.getStatus() == Status.ERROR) {
         logger.info(m.getMessage());
-        logger.debug("Exiting from validation");
+        logger.debug("Exiting from validation method");
         return result;
       }
     }
     result = true;
-    logger.debug("Exiting from validation");
+    logger.debug("Exiting from validation method");
     return result;
 
   }

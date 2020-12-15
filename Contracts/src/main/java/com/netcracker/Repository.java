@@ -35,9 +35,7 @@ public class Repository implements IRepository<Contract> {
   @Override
   public void sortBy(Comparator<Contract> comparator, ISorter sorter) {
 
-
     sorter.sort(repo, comparator);
-
 
   }
 
@@ -116,6 +114,7 @@ public class Repository implements IRepository<Contract> {
    * @return true if this array contained the specified contract
    */
   public boolean delete(int id) {
+
     Contract temp;
     for (int i = 0; i < repo.size(); i++) {
       temp = repo.get(i);
