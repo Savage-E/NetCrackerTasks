@@ -1,0 +1,22 @@
+#Tue Dec 15 19:11:37 MSK 2020
+F\:\\IntellijIdea\\NetCrackerTasks\\Contracts\\src\\main\\java\\com\\netcracker\\validators\\FioValidator.java=1608047880988
+F\:\\IntellijIdea\\NetCrackerTasks\\Contracts\\src\\main\\java\\com\\netcracker\\sorters\\ISorter.java=1608047880983
+F\:\\IntellijIdea\\NetCrackerTasks\\Contracts\\src\\main\\java\\com\\netcracker\\Main.java=1608047880982
+F\:\\IntellijIdea\\NetCrackerTasks\\Contracts\\src\\main\\java\\com\\netcracker\\entities\\CellularContract.java=1608047880983
+F\:\\IntellijIdea\\NetCrackerTasks\\Contracts\\src\\main\\java\\com\\netcracker\\validators\\AgeValidator.java=1608048406875
+F\:\\IntellijIdea\\NetCrackerTasks\\Contracts\\src\\main\\java\\com\\netcracker\\Repository.java=1608048691883
+module-resource*?\:checkstyle-xpath-suppressions.xml=2B5222E3EFBCAC1B3DA299C80F6F857F717A6406
+F\:\\IntellijIdea\\NetCrackerTasks\\Contracts\\src\\main\\java\\com\\netcracker\\entities\\Person.java=1608047880983
+module-resource*?\:checkstyle-suppressions.xml=31F6A174587E47B66F3A071C444C45EBDC0AEF91
+F\:\\IntellijIdea\\NetCrackerTasks\\Contracts\\src\\main\\java\\com\\netcracker\\validators\\Status.java=1608047880989
+F\:\\IntellijIdea\\NetCrackerTasks\\Contracts\\src\\main\\java\\com\\netcracker\\DynamicArray.java=1608048501885
+configuration*?=F82BAFD0777967E162864CBD556731A992202A08
+F\:\\IntellijIdea\\NetCrackerTasks\\Contracts\\src\\main\\java\\com\\netcracker\\validators\\Message.java=1608047880989
+F\:\\IntellijIdea\\NetCrackerTasks\\Contracts\\src\\main\\java\\com\\netcracker\\IRepository.java=1608047880980
+F\:\\IntellijIdea\\NetCrackerTasks\\Contracts\\src\\main\\java\\com\\netcracker\\entities\\InternetContract.java=1608047880983
+F\:\\IntellijIdea\\NetCrackerTasks\\Contracts\\src\\main\\java\\com\\netcracker\\entities\\Contract.java=1608047880983
+F\:\\IntellijIdea\\NetCrackerTasks\\Contracts\\src\\main\\java\\com\\netcracker\\validators\\DateValidator.java=1608048501915
+F\:\\IntellijIdea\\NetCrackerTasks\\Contracts\\src\\main\\java\\com\\netcracker\\entities\\DigitalTvContract.java=1608047880983
+F\:\\IntellijIdea\\NetCrackerTasks\\Contracts\\src\\main\\java\\com\\netcracker\\validators\\Validator.java=1608047880990
+F\:\\IntellijIdea\\NetCrackerTasks\\Contracts\\src\\main\\java\\com\\netcracker\\sorters\\MergeSorter.java=1608047880983
+F\:\\IntellijIdea\\NetCrackerTasks\\Contracts\\src\\main\\java\\com\\netcracker\\sorters\\BubbleSorter.java=1608047880983

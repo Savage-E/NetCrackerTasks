@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/Contracts/Contracts.iml" filepath="$PROJECT_DIR$/Contracts/Contracts.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/NetCrackerTasks.iml" filepath="$PROJECT_DIR$/.idea/NetCrackerTasks.iml" />
+    </modules>
+  </component>
+</project>
