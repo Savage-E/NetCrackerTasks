@@ -1,5 +1,6 @@
-package com.netcracker;
+package com.netcracker.io;
 
+import com.netcracker.IRepository;
 import com.netcracker.entities.Contract;
 import com.netcracker.entities.CellularContract;
 import com.netcracker.entities.DigitalTvContract;
@@ -12,7 +13,6 @@ import com.netcracker.validators.Message;
 import com.netcracker.validators.Status;
 import com.opencsv.CSVParser;
 import com.opencsv.CSVParserBuilder;
-import com.opencsv.CSVReader;
 import com.opencsv.CSVReaderBuilder;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -30,8 +30,8 @@ import org.joda.time.LocalDate;
  *
  * @author Vlad Kotov
  */
-public class LoadFromCsvFile {
-  private static final Logger logger = LogManager.getLogger(LoadFromCsvFile.class);
+public class CSVReader {
+  private static final Logger logger = LogManager.getLogger(CSVReader.class);
 
   /**
    * Reads contracts from specified file.
@@ -47,7 +47,7 @@ public class LoadFromCsvFile {
     try {
       filereader = new FileReader(filePath);
       CSVParser parser = new CSVParserBuilder().withSeparator(';').build();
-      CSVReader csvReader = new CSVReaderBuilder(filereader)
+      com.opencsv.CSVReader csvReader = new CSVReaderBuilder(filereader)
               .withCSVParser(parser)
               .build();
       allData = (ArrayList<String[]>) csvReader.readAll();

@@ -2,10 +2,12 @@ package com.netcracker;
 
 
 import com.netcracker.entities.Contract;
-import com.netcracker.sorters.ISorter;
+import com.netcracker.util.ISorter;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.function.Predicate;
+
+import com.netcracker.util.DynamicArray;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 

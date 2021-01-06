@@ -1,7 +1,7 @@
 package com.netcracker;
 
 
-import com.netcracker.sorters.ISorter;
+import com.netcracker.util.ISorter;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.function.Predicate;

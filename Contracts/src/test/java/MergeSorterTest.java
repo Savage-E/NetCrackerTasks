@@ -1,9 +1,9 @@
-import com.netcracker.DynamicArray;
+import com.netcracker.util.DynamicArray;
 import com.netcracker.entities.Person;
 import com.netcracker.entities.CellularContract;
 import com.netcracker.entities.Contract;
 import com.netcracker.entities.DigitalTvContract;
-import com.netcracker.sorters.MergeSorter;
+import com.netcracker.util.MergeSorter;
 import org.joda.time.LocalDate;
 import org.joda.time.chrono.CopticChronology;
 import org.junit.Test;

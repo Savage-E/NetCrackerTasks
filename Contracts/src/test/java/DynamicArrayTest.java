@@ -1,4 +1,4 @@
-import com.netcracker.DynamicArray;
+import com.netcracker.util.DynamicArray;
 import com.netcracker.entities.CellularContract;
 import com.netcracker.entities.Contract;
 import com.netcracker.entities.DigitalTvContract;

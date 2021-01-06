@@ -1,4 +1,4 @@
-package com.netcracker;
+package com.netcracker.util;
 
 import java.util.Iterator;
 import org.apache.logging.log4j.LogManager;

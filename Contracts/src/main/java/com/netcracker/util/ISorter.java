@@ -1,4 +1,4 @@
-package com.netcracker.sorters;
+package com.netcracker.util;
 
 import java.util.Comparator;
 
