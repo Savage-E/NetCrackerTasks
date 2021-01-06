@@ -1,4 +1,4 @@
-package com.netcracker.io;
+package com.netcracker.parser;
 
 import com.netcracker.IRepository;
 import com.netcracker.entities.Contract;
@@ -6,11 +6,8 @@ import com.netcracker.entities.CellularContract;
 import com.netcracker.entities.DigitalTvContract;
 import com.netcracker.entities.InternetContract;
 import com.netcracker.entities.Person;
-import com.netcracker.validators.AgeValidator;
-import com.netcracker.validators.DateValidator;
-import com.netcracker.validators.FioValidator;
-import com.netcracker.validators.Message;
-import com.netcracker.validators.Status;
+import com.netcracker.reflection.AutoInjectable;
+import com.netcracker.validators.*;
 import com.opencsv.CSVParser;
 import com.opencsv.CSVParserBuilder;
 import com.opencsv.CSVReaderBuilder;
@@ -32,6 +29,9 @@ import org.joda.time.LocalDate;
  */
 public class CSVReader {
   private static final Logger logger = LogManager.getLogger(CSVReader.class);
+
+  @AutoInjectable(clazz = Validator.class)
+  private static List<Validator> validators = new ArrayList<>();
 
   /**
    * Reads contracts from specified file.
