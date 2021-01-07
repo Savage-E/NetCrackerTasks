@@ -1,12 +1,12 @@
 package com.netcracker.reflection;
 
+import java.lang.reflect.ParameterizedType;
+import java.lang.reflect.Field;
+import java.util.ArrayList;
+import java.util.Set;
+import java.util.List;
 import org.reflections.Reflections;
 
-import java.lang.reflect.Field;
-import java.lang.reflect.ParameterizedType;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Set;
 
 /**
  * Provides Dependency Injection.
@@ -39,7 +39,7 @@ public class Injector {
         if (f.getType().getName().contains("java.util.List")) {
           ParameterizedType fieldListType = (ParameterizedType) f.getGenericType();
           Class<?> fieldGenericType = (Class<?>) fieldListType.getActualTypeArguments()[0];
-         getClasses(objects, fieldGenericType);
+          getClasses(objects, fieldGenericType);
 
           for (Object o : objects) {
             if (o != null && fieldGenericType.isAssignableFrom(o.getClass())) {

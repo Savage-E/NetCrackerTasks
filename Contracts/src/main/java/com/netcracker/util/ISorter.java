@@ -1,4 +1,5 @@
 package com.netcracker.util;
+
 import java.util.Comparator;
 
 /**
