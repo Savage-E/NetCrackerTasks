@@ -6,7 +6,7 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 /**
- *
+ * Indicates what field which you will need to implement dependency injection.
  */
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.FIELD)

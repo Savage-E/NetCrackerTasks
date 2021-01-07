@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.Set;
 
 /**
- *
+ * Provides Dependency Injection.
  */
 @Configuration(packages = {"com.netcracker.validators", "com.netcracker.util"})
 public class Injector {
@@ -18,9 +18,11 @@ public class Injector {
 
 
   /**
-   * @param object
-   * @param <T>
-   * @return
+   * Injects dependencies into a specified object.
+   *
+   * @param object the object to inject dependencies
+   * @param <T>    the type of the class
+   * @return object  with injected dependencies
    * @throws IllegalAccessException
    */
   public static <T> T inject(T object) throws IllegalAccessException {
@@ -37,7 +39,7 @@ public class Injector {
         if (f.getType().getName().contains("java.util.List")) {
           ParameterizedType fieldListType = (ParameterizedType) f.getGenericType();
           Class<?> fieldGenericType = (Class<?>) fieldListType.getActualTypeArguments()[0];
-          objects = getClasses(objects, fieldGenericType);
+         getClasses(objects, fieldGenericType);
 
           for (Object o : objects) {
             if (o != null && fieldGenericType.isAssignableFrom(o.getClass())) {
@@ -46,7 +48,7 @@ public class Injector {
             f.set(object, classInject);
           }
         } else {
-          objects = getClasses(objects, f.getType());
+          getClasses(objects, f.getType());
           for (Object o : objects) {
             if (o != null && f.getType().isAssignableFrom(o.getClass())) {
               classInject.add(o);
@@ -64,7 +66,7 @@ public class Injector {
   }
 
 
-  private static ArrayList<Object> getClasses(ArrayList<Object> objects, Class<?> type) {
+  private static void getClasses(ArrayList<Object> objects, Class<?> type) {
     Configuration packages = Injector.class.getAnnotation(Configuration.class);
     Reflections reflections;
     for (String pack : packages.packages()) {
@@ -78,7 +80,7 @@ public class Injector {
         }
       }
     }
-    return objects;
+
   }
 }
 
