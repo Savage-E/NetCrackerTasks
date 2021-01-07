@@ -37,10 +37,9 @@ public class Repository implements IRepository<Contract> {
    * Sorts repository with specified comparator.
    *
    * @param comparator the comparator to use to sort
-   * @param sorter     the type of sorter to sort
    */
   @Override
-  public void sortBy(Comparator<Contract> comparator, ISorter sorter) {
+  public void sortBy(Comparator<Contract> comparator/*, ISorter sorter*/) {
     logger.debug("Starting sortBy method");
     sorter.sort(repo, comparator);
     logger.debug("Exiting sortBy method");

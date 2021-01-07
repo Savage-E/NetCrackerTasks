@@ -3,6 +3,7 @@ import com.netcracker.entities.CellularContract;
 import com.netcracker.entities.Contract;
 import com.netcracker.entities.DigitalTvContract;
 import com.netcracker.entities.Person;
+import com.netcracker.parser.CSVReader;
 import org.joda.time.LocalDate;
 import org.joda.time.chrono.CopticChronology;
 import org.junit.Before;
@@ -10,23 +11,27 @@ import org.junit.Test;
 
 import java.util.ArrayList;
 
-import static com.netcracker.parser.CSVReader.readFrom;
+import static com.netcracker.reflection.Injector.inject;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNull;
 
-public class LoadFromCSVFileTest {
+public class CSVReaderTest {
 
   Repository repository;
+  CSVReader csvReader;
 
   @Before
-  public void initRepo() {
+  public void initRepo() throws IllegalAccessException {
     repository = new Repository();
+    csvReader = new CSVReader();
+    inject(csvReader);
   }
 
 
   @Test
   public void whenReadToEmptyRepoThenRepositoryFilled() {
-    readFrom("src\\test\\resources\\Testcontracts", repository);
+
+    csvReader.readFrom("src\\test\\resources\\Testcontracts", repository);
     ArrayList<Contract> arrayList = repository.toArrayList();
     String expectedFio = "Kotov Vladislav Olegovich";
     int expectedId = 32;
@@ -77,7 +82,7 @@ public class LoadFromCSVFileTest {
             "male", 21312311), "CNN,1,")
     );
 
-    readFrom("src\\test\\resources\\Testcontracts", repository);
+    csvReader.readFrom("src\\test\\resources\\Testcontracts", repository);
     ArrayList<Contract> arrayList = repository.toArrayList();
 
     String expectedFio1 = "Kotov Vladislav Olegovich";
@@ -122,7 +127,7 @@ public class LoadFromCSVFileTest {
             "male", 21312311), "CNN,1,")
     );
 
-    readFrom("src\\test\\resources\\Contracts2", repository);
+    csvReader.readFrom("src\\test\\resources\\Contracts2", repository);
     Contract expected = repository.get(32);
     assertNull(expected);
   }
@@ -131,7 +136,7 @@ public class LoadFromCSVFileTest {
   @Test
   public void whenReadWithAgeContract14ThenContractRejected() {
 
-    readFrom("src\\test\\resources\\Contracts3", repository);
+    csvReader.readFrom("src\\test\\resources\\Contracts3", repository);
     Contract expected = repository.get(32);
     assertNull(expected);
   }
@@ -139,7 +144,7 @@ public class LoadFromCSVFileTest {
   @Test
   public void whenReadCorrectAgeDataFioContractThenContractAdded() {
 
-    readFrom("src\\test\\resources\\TestContracts", repository);
+    csvReader.readFrom("src\\test\\resources\\TestContracts", repository);
     String expected = "Kotov Vladislav Olegovich";
     String actual = repository.get(32).getPerson().getFio();
     assertEquals(expected, actual);
@@ -149,7 +154,7 @@ public class LoadFromCSVFileTest {
   public void whenReadWrongFioContractThenContractRejected() {
 
 
-    readFrom("src\\test\\resources\\Contracts2", repository);
+    csvReader.readFrom("src\\test\\resources\\Contracts2", repository);
     Contract expected = repository.get(31);
     assertNull(expected);
   }
@@ -157,7 +162,7 @@ public class LoadFromCSVFileTest {
   @Test
   public void whenReadWrongContractsDatesThenContractsRejected() {
 
-    readFrom("src\\test\\resources\\WrongContractDates", repository);
+    csvReader.readFrom("src\\test\\resources\\WrongContractDates", repository);
     Contract expected1 = repository.get(31);
     Contract expected2 = repository.get(32);
     assertNull(expected1);

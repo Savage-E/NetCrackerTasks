@@ -1,6 +1,9 @@
 package com.netcracker.util;
 
 import com.netcracker.entities.Contract;
+import com.netcracker.util.DynamicArray;
+import com.netcracker.util.ISorter;
+
 import java.util.Comparator;
 
 /**

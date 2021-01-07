@@ -144,7 +144,9 @@ public class CSVReader {
         logger.debug("Adding to repository new contract");
         repository.add(newContract);
       } else {
-        logger.info("Cannot add contract with id" + newContract.getId());
+        if (newContract != null) {
+          logger.info("Cannot add contract with id" + newContract.getId());
+        }
       }
     }
     logger.debug("Exiting from method addContract");
@@ -154,13 +156,10 @@ public class CSVReader {
     logger.debug("Starting validation method");
     Message[] messages = new Message[3];
     boolean result = false;
-    FioValidator fioValidator = new FioValidator();
-    AgeValidator ageValidator = new AgeValidator();
-    DateValidator dateValidator = new DateValidator();
 
-    messages[0] = fioValidator.validate(newContract);
-    messages[1] = dateValidator.validate(newContract);
-    messages[2] = ageValidator.validate(newContract);
+    messages[0] = validators.get(0).validate(newContract);
+    messages[1] = validators.get(1).validate(newContract);
+    messages[2] = validators.get(2).validate(newContract);
     for (Message m : messages) {
       if (m.getStatus() == Status.ERROR) {
         logger.info(m.getMessage());

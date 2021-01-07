@@ -64,9 +64,8 @@ public interface IRepository<T> {
    * Sorts repository with specified comparator.
    *
    * @param comparator the comparator to use to sort
-   * @param sorter     the type of sorter to sort
    */
-  void sortBy(Comparator<T> comparator, ISorter sorter);
+  void sortBy(Comparator<T> comparator/*, ISorter sorter*/);
 
 }
 
