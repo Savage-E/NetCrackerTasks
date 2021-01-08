@@ -81,7 +81,7 @@ public class Injector {
       Set<Class<?>> classes = reflections.getSubTypesOf((Class<Object>) type);
       for (Class<?> o : classes) {
         try {
-          logger.debug("Injecting the object");
+          logger.debug("Creating instances from specified packages");
           objects.add(o.newInstance());
         } catch (InstantiationException | IllegalAccessException e) {
           logger.info("Error to inject the object");
