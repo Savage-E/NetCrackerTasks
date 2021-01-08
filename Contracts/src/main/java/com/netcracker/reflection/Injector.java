@@ -73,7 +73,7 @@ public class Injector {
 
 
   private static void getClasses(ArrayList<Object> objects, Class<?> type) {
-    logger.debug("Exiting method getClasses");
+    logger.debug("Starting method getClasses");
     Configuration packages = Injector.class.getAnnotation(Configuration.class);
     Reflections reflections;
     for (String pack : packages.packages()) {
