@@ -5,6 +5,8 @@ import java.lang.reflect.ParameterizedType;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
+
+import com.netcracker.exceptions.InjectionException;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.reflections.Reflections;
@@ -25,9 +27,9 @@ public class Injector {
    * @param object the object to inject dependencies
    * @param <T>    the type of the class
    * @return object  with injected dependencies
-   * @throws IllegalAccessException if application does not have access to the definition of the specified class, field, method or constructor.
+   * @throws InjectionException if application does not have access to the definition of the specified class, field, method or constructor.
    */
-  public static <T> T inject(T object) throws IllegalAccessException {
+  public static <T> T inject(T object) throws InjectionException {
     logger.debug("Starting method inject");
     List<Object> classInject = new ArrayList<>();
     Class<T> clazz = (Class<T>) object.getClass();
@@ -48,7 +50,14 @@ public class Injector {
             if (o != null && fieldGenericType.isAssignableFrom(o.getClass())) {
               classInject.add(o);
             }
-            f.set(object, classInject);
+
+            try {
+              f.set(object, classInject);
+            } catch (IllegalAccessException e) {
+              logger.info("Error to inject the object");
+              logger.error("Exception:",e);
+              throw  new InjectionException(e);
+            }
           }
         } else {
           logger.debug("Starting injection to single object");
@@ -57,11 +66,18 @@ public class Injector {
             if (o != null && f.getType().isAssignableFrom(o.getClass())) {
               classInject.add(o);
             }
+
             if (classInject.size() == 1) {
-              f.set(object, classInject.get(0));
+              try {
+                f.set(object, classInject.get(0));
+              } catch (IllegalAccessException e) {
+                logger.info("Error to inject the object");
+                logger.error("Exception:",e);
+                throw  new InjectionException(e);
+              }
             } else {
               logger.info("Error to inject the object");
-              throw new RuntimeException("Amount of classes more than 1 (only 1 valid)");
+              throw new InjectionException("Amount of classes more than 1 (only 1 allowed)");
             }
           }
         }

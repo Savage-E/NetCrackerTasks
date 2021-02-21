@@ -3,6 +3,7 @@ import com.netcracker.entities.CellularContract;
 import com.netcracker.entities.Contract;
 import com.netcracker.entities.DigitalTvContract;
 import com.netcracker.entities.Person;
+import com.netcracker.exceptions.InjectionException;
 import org.joda.time.LocalDate;
 import org.joda.time.chrono.CopticChronology;
 import org.junit.Before;
@@ -451,9 +452,8 @@ public class RepositoryTest {
     assertNull(repo1.get(4));
   }
 
-  @Test(expected = RuntimeException.class)
- // public void whenSortByFioBubbleSortThenRepositorySorted() throws IllegalAccessException {
- public void whenSortByFioBubbleSortThenThrowRuntimeException() throws IllegalAccessException {
+  @Test(expected = InjectionException.class)
+ public void whenSortByFioBubbleSortThenThrowRuntimeException() throws  InjectionException {
           repo.add(new DigitalTvContract(31,
             new LocalDate(2010, 12, 12, CopticChronology.getInstance()),
             new LocalDate(2010, 12, 21, CopticChronology.getInstance()),

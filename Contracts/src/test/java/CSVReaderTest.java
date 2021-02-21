@@ -3,6 +3,7 @@ import com.netcracker.entities.CellularContract;
 import com.netcracker.entities.Contract;
 import com.netcracker.entities.DigitalTvContract;
 import com.netcracker.entities.Person;
+import com.netcracker.exceptions.InjectionException;
 import com.netcracker.parser.CSVReader;
 import org.joda.time.LocalDate;
 import org.joda.time.chrono.CopticChronology;
@@ -21,7 +22,7 @@ public class CSVReaderTest {
   CSVReader csvReader;
 
   @Before
-  public void initRepo() throws IllegalAccessException {
+  public void initRepo() throws  InjectionException {
     repository = new Repository();
     csvReader = new CSVReader();
     inject(csvReader);
