@@ -1,15 +1,15 @@
 package com.netcracker.reflection;
 
+import com.netcracker.exceptions.InjectionException;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+import org.reflections.Reflections;
+
 import java.lang.reflect.Field;
 import java.lang.reflect.ParameterizedType;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
-
-import com.netcracker.exceptions.InjectionException;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-import org.reflections.Reflections;
 
 
 /**
@@ -18,8 +18,8 @@ import org.reflections.Reflections;
 @Configuration(packages = {"com.netcracker.validators", "com.netcracker.util"})
 public class Injector {
 
-  private List<Object> list = new ArrayList<>();
   private static final Logger logger = LogManager.getLogger(Injector.class);
+  private List<Object> list = new ArrayList<>();
 
   /**
    * Injects dependencies into a specified object.
@@ -27,7 +27,7 @@ public class Injector {
    * @param object the object to inject dependencies
    * @param <T>    the type of the class
    * @return object  with injected dependencies
-   * @throws InjectionException if application does not have access to the definition of the specified class, field, method or constructor.
+   * @throws InjectionException if application does not have access to the definition of the specified class, field, method or constructor or error to inject in single object.
    */
   public static <T> T inject(T object) throws InjectionException {
     logger.debug("Starting method inject");
@@ -55,8 +55,8 @@ public class Injector {
               f.set(object, classInject);
             } catch (IllegalAccessException e) {
               logger.info("Error to inject the object");
-              logger.error("Exception:",e);
-              throw  new InjectionException(e);
+              logger.error("Exception:", e);
+              throw new InjectionException(e);
             }
           }
         } else {
@@ -72,8 +72,8 @@ public class Injector {
                 f.set(object, classInject.get(0));
               } catch (IllegalAccessException e) {
                 logger.info("Error to inject the object");
-                logger.error("Exception:",e);
-                throw  new InjectionException(e);
+                logger.error("Exception:", e);
+                throw new InjectionException(e);
               }
             } else {
               logger.info("Error to inject the object");
@@ -101,7 +101,7 @@ public class Injector {
           objects.add(o.newInstance());
         } catch (InstantiationException | IllegalAccessException e) {
           logger.info("Error to inject the object");
-          logger.error("Exception:",e);
+          logger.error("Exception:", e);
         }
       }
     }
