@@ -1,18 +1,17 @@
-package com.netcracker;
+package com.netcracker.parser;
 
+import com.netcracker.IRepository;
 import com.netcracker.entities.Contract;
 import com.netcracker.entities.CellularContract;
 import com.netcracker.entities.DigitalTvContract;
 import com.netcracker.entities.InternetContract;
 import com.netcracker.entities.Person;
-import com.netcracker.validators.AgeValidator;
-import com.netcracker.validators.DateValidator;
-import com.netcracker.validators.FioValidator;
+import com.netcracker.reflection.AutoInjectable;
 import com.netcracker.validators.Message;
 import com.netcracker.validators.Status;
+import com.netcracker.validators.Validator;
 import com.opencsv.CSVParser;
 import com.opencsv.CSVParserBuilder;
-import com.opencsv.CSVReader;
 import com.opencsv.CSVReaderBuilder;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -30,8 +29,11 @@ import org.joda.time.LocalDate;
  *
  * @author Vlad Kotov
  */
-public class LoadFromCsvFile {
-  private static final Logger logger = LogManager.getLogger(LoadFromCsvFile.class);
+public class CSVReader {
+  private static final Logger logger = LogManager.getLogger(CSVReader.class);
+
+  @AutoInjectable(clazz = Validator.class)
+  private static List<Validator> validators = new ArrayList<>();
 
   /**
    * Reads contracts from specified file.
@@ -47,7 +49,7 @@ public class LoadFromCsvFile {
     try {
       filereader = new FileReader(filePath);
       CSVParser parser = new CSVParserBuilder().withSeparator(';').build();
-      CSVReader csvReader = new CSVReaderBuilder(filereader)
+      com.opencsv.CSVReader csvReader = new CSVReaderBuilder(filereader)
               .withCSVParser(parser)
               .build();
       allData = (ArrayList<String[]>) csvReader.readAll();
@@ -144,7 +146,9 @@ public class LoadFromCsvFile {
         logger.debug("Adding to repository new contract");
         repository.add(newContract);
       } else {
-        logger.info("Cannot add contract with id" + newContract.getId());
+        if (newContract != null) {
+          logger.info("Cannot add contract with id" + newContract.getId());
+        }
       }
     }
     logger.debug("Exiting from method addContract");
@@ -154,13 +158,10 @@ public class LoadFromCsvFile {
     logger.debug("Starting validation method");
     Message[] messages = new Message[3];
     boolean result = false;
-    FioValidator fioValidator = new FioValidator();
-    AgeValidator ageValidator = new AgeValidator();
-    DateValidator dateValidator = new DateValidator();
 
-    messages[0] = fioValidator.validate(newContract);
-    messages[1] = dateValidator.validate(newContract);
-    messages[2] = ageValidator.validate(newContract);
+    messages[0] = validators.get(0).validate(newContract);
+    messages[1] = validators.get(1).validate(newContract);
+    messages[2] = validators.get(2).validate(newContract);
     for (Message m : messages) {
       if (m.getStatus() == Status.ERROR) {
         logger.info(m.getMessage());

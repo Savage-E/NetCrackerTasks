@@ -1,6 +1,5 @@
-package com.netcracker.sorters;
+package com.netcracker.util;
 
-import com.netcracker.DynamicArray;
 import com.netcracker.entities.Contract;
 import java.util.Comparator;
 
