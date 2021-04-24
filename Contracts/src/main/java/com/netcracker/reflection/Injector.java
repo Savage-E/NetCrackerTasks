@@ -27,7 +27,8 @@ public class Injector {
    * @param object the object to inject dependencies
    * @param <T>    the type of the class
    * @return object  with injected dependencies
-   * @throws InjectionException if application does not have access to the definition of the specified class, field, method or constructor or error to inject in single object.
+   * @throws InjectionException if application does not have access to the definition of the specified class,
+   * field, method or constructor or error to inject in single object.
    */
   public static <T> T inject(T object) throws InjectionException {
     logger.debug("Starting method inject");
