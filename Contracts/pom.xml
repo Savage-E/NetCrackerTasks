@@ -17,7 +17,16 @@
                     <target>8</target>
                 </configuration>
             </plugin>
-
+            <plugin>
+                <groupId>org.flywaydb</groupId>
+                <artifactId>flyway-maven-plugin</artifactId>
+                <version>7.8.1</version>
+                <configuration>
+                    <user>postgres</user>
+                    <password>VladTools2</password>
+                    <url>jdbc:postgresql://localhost:5432/repository</url>
+                </configuration>
+            </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-checkstyle-plugin</artifactId>
@@ -44,6 +53,13 @@
 
     </build>
     <dependencies>
+        <!-- https://mvnrepository.com/artifact/org.postgresql/postgresql -->
+        <dependency>
+            <groupId>org.postgresql</groupId>
+            <artifactId>postgresql</artifactId>
+            <version>42.2.20</version>
+        </dependency>
+
         <dependency>
             <groupId>org.realityforge.org.jetbrains.annotations</groupId>
             <artifactId>org.jetbrains.annotations</artifactId>
@@ -86,12 +102,6 @@
             <groupId>org.reflections</groupId>
             <artifactId>reflections</artifactId>
             <version>0.9.12</version>
-        </dependency>
-        <!-- https://mvnrepository.com/artifact/org.flywaydb/flyway-core -->
-        <dependency>
-            <groupId>org.flywaydb</groupId>
-            <artifactId>flyway-core</artifactId>
-            <version>7.8.1</version>
         </dependency>
 
 

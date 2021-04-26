@@ -1,4 +1,4 @@
-CREATE TABLE contract
+CREATE TABLE agreement
 (
     id              integer NOT NULL,
     start_date      date,

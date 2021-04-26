@@ -27,13 +27,17 @@ public class Contract {
    * @param contractNumber the number of the contract
    * @param person         person entity
    */
-  protected Contract(int id, @NotNull LocalDate startDate, @NotNull LocalDate endDate,
-                     int contractNumber, @NotNull Person person) {
+  public Contract(int id, @NotNull LocalDate startDate, @NotNull LocalDate endDate,
+                  int contractNumber, @NotNull Person person) {
     this.id = id;
     this.startDate = startDate;
     this.endDate = endDate;
     this.contractNumber = contractNumber;
     this.person = person;
+  }
+
+  public Contract() {
+
   }
 
   public int getId() {

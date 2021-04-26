@@ -22,10 +22,9 @@ import java.util.function.Predicate;
  */
 public class Repository implements IRepository<Contract> {
   private static final Logger logger = LogManager.getLogger(Repository.class.getName());
-  private final DynamicArray<Contract> repo;
-
   @AutoInjectable
   ISorter sorter;
+  private DynamicArray<Contract> repo;
 
   /**
    * Initializes repository.
@@ -33,6 +32,10 @@ public class Repository implements IRepository<Contract> {
   public Repository() {
     logger.debug("Initializing DynamicArray");
     this.repo = new DynamicArray<>();
+  }
+
+  public void setRepo(DynamicArray<Contract> repo) {
+    this.repo = repo;
   }
 
   /**
