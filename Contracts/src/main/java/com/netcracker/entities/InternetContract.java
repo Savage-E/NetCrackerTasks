@@ -3,6 +3,11 @@ package com.netcracker.entities;
 import org.jetbrains.annotations.NotNull;
 import org.joda.time.LocalDate;
 
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
+
 /**
  * Represents the entity of Internet contracts.
  *
@@ -10,7 +15,10 @@ import org.joda.time.LocalDate;
  *
  * @author Vlad Kotov
  */
+@XmlAccessorType(XmlAccessType.FIELD)
+@XmlRootElement
 public final class InternetContract extends Contract {
+  @XmlElement
   private int maxSpeed;
 
   /**
@@ -28,7 +36,9 @@ public final class InternetContract extends Contract {
     super(id, startDate, endDate, contractNumber, person);
     this.maxSpeed = maxSpeed;
   }
+public InternetContract(){
 
+}
   public int getMaxSpeed() {
     return maxSpeed;
   }

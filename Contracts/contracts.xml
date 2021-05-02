@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<contracts>
+    <contractList xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="digitalTvContract">
+        <id>1</id>
+        <startDate>2010-12-12</startDate>
+        <endDate>2010-12-21</endDate>
+        <contractNumber>33</contractNumber>
+        <person>
+            <id>1</id>
+            <fio>Fydor Potapov</fio>
+            <birthday>1999-10-23</birthday>
+            <gender>male</gender>
+            <passportNumSeries>21312311</passportNumSeries>
+        </person>
+        <channelPack>CNN,1,</channelPack>
+    </contractList>
+    <contractList xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="cellularContract">
+        <id>2</id>
+        <startDate>2010-12-12</startDate>
+        <endDate>2010-12-21</endDate>
+        <contractNumber>43223</contractNumber>
+        <person>
+            <id>1</id>
+            <fio>fewe</fio>
+            <birthday>1999-10-23</birthday>
+            <gender>male</gender>
+            <passportNumSeries>21312311</passportNumSeries>
+        </person>
+        <sms>423</sms>
+        <mb>3432</mb>
+        <minutes>123412</minutes>
+    </contractList>
+    <contractList xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="internetContract">
+        <id>3</id>
+        <startDate>2010-12-12</startDate>
+        <endDate>2010-12-21</endDate>
+        <contractNumber>43223</contractNumber>
+        <person>
+            <id>1</id>
+            <fio>fewe</fio>
+            <birthday>1988-10-23</birthday>
+            <gender>male</gender>
+            <passportNumSeries>21312311</passportNumSeries>
+        </person>
+        <maxSpeed>423</maxSpeed>
+    </contractList>
+</contracts>
