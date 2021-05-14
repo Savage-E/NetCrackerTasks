@@ -54,6 +54,12 @@ public class Repository implements IRepository<Contract> {
     return repo.size();
   }
 
+  public void setArrayList(ArrayList<Contract> arrayList){
+    for (Contract contract : arrayList) {
+      repo.add(contract);
+    }
+  }
+
   /**
    * Converts repository to arrayList.
    *

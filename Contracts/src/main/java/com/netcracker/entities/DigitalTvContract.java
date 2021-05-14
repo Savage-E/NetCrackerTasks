@@ -3,6 +3,11 @@ package com.netcracker.entities;
 import org.jetbrains.annotations.NotNull;
 import org.joda.time.LocalDate;
 
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
+
 /**
  * Represents the Digital TV contract.
  *
@@ -10,7 +15,10 @@ import org.joda.time.LocalDate;
  *
  * @author Vlad Kotov
  */
+@XmlAccessorType(XmlAccessType.FIELD)
+@XmlRootElement
 public class DigitalTvContract extends Contract {
+  @XmlElement
   private @NotNull String channelPack;
 
   /**
@@ -28,6 +36,9 @@ public class DigitalTvContract extends Contract {
                            @NotNull Person person, @NotNull String channelPack) {
     super(id, startDate, endDate, contractNumber, person);
     this.channelPack = channelPack;
+  }
+  public DigitalTvContract(){
+
   }
 
   public @NotNull String getChannelPack() {

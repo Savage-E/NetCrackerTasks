@@ -3,6 +3,11 @@ package com.netcracker.entities;
 import org.jetbrains.annotations.NotNull;
 import org.joda.time.LocalDate;
 
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
+
 
 /**
  * Represents the entity of cellular contracts.
@@ -12,10 +17,14 @@ import org.joda.time.LocalDate;
  *
  * @author Vlad Kotov
  */
+@XmlAccessorType(XmlAccessType.FIELD)
+@XmlRootElement
 public final class CellularContract extends Contract {
-
+  @XmlElement
   private int sms;
+  @XmlElement
   private int mb;
+  @XmlElement
   private int minutes;
 
   /**
@@ -37,6 +46,9 @@ public final class CellularContract extends Contract {
     this.sms = sms;
     this.mb = mb;
     this.minutes = minutes;
+  }
+  public CellularContract(){
+
   }
 
   public int getSms() {

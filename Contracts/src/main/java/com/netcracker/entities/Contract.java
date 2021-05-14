@@ -1,20 +1,34 @@
 package com.netcracker.entities;
 
+import com.netcracker.util.xml.DateXmlAdapter;
 import org.jetbrains.annotations.NotNull;
 import org.joda.time.LocalDate;
+
+import javax.xml.bind.annotation.*;
+import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
 /**
  * Represents parent class for contracts.
  *
  * @author Vlad Kotov
  */
+@XmlAccessorType(XmlAccessType.FIELD)
+@XmlRootElement
+@XmlSeeAlso({DigitalTvContract.class,InternetContract.class,CellularContract.class})
 public class Contract {
+  @XmlElement
   private int id;
+
+  @XmlJavaTypeAdapter(DateXmlAdapter .class)
+  @XmlElement
   private @NotNull LocalDate startDate;
+
+  @XmlJavaTypeAdapter(DateXmlAdapter .class)
+  @XmlElement
   private @NotNull LocalDate endDate;
+  @XmlElement
   private int contractNumber;
-
-
+  @XmlElement
   private @NotNull Person person;
 
 
